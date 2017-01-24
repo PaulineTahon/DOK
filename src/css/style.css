@@ -1,7 +1,408 @@
-@import 'reset';
+@import 'reset.css';
 
 body {
-  font-family: Roboto;
-  font-size: 3rem;
-  margin: 2rem;
+  margin: 2rem 4rem;
+  font-family: arial, sans-serif;
+}
+
+:root {
+  --active-tab: #ef8269;
+  --button-style: {
+    height: 5rem;
+    width: 30rem;
+    font-size: 1.8rem;
+    background-color: white;
+    border: 3px dotted #41cec3;
+    color: #41cec3;
+    padding-top: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-top: 2rem;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes moveLeft {
+
+  0% { transform: translateX(0); }
+
+  50% { transform: translateX(-110rem); }
+
+  100% { transform: translateX(0); }
+}
+
+@keyframes moveRight {
+
+  0% { transform: translateX(0); }
+
+  50% { transform: translateX(120rem); }
+
+  100% { transform: translateX(0); }
+}
+
+.header {
+  height: 100vh;
+}
+
+.header-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-right: 20rem;
+}
+
+.header-menu__item {
+  text-decoration: none;
+  color: black;
+}
+
+.active {
+  color: var(--active-tab);
+}
+
+.header-menu__item:first-child a {
+  padding-right: 10rem;
+}
+
+.header-text {
+  padding-top: 3rem;
+}
+
+.header-text__title {
+  display: flex;
+  align-items: flex-end;
+}
+
+.header-text__title__edition {
+  font-family: HereJustNow-Out;
+  font-size: 11rem;
+}
+
+.header-text__info, .header-text__specifics {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-text__slogan {
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.header-text__specifics {
+  align-self: flex-end;
+  width: 40rem;
+}
+
+.header-text__date {
+  font-family: HereJustNow-Out;
+  font-size: 5rem;
+  text-transform: uppercase;
+}
+
+.header-text__social-icons__icon {
+  display: block;
+  padding: .6rem 0;
+}
+
+.header-img {
+  position: relative;
+  top: -19rem;
+  left: center;
+  width: 90vw;
+  height: 80vh;
+  margin: 0 auto;
+  z-index: -1;
+  padding-left: 4rem;
+}
+
+.cloud {
+  position: relative;
+  width: 10vw;
+  height: 11vh;
+  z-index: -1;
+}
+
+.cloud__left {
+  top: -100vh;
+  left: 16vw;
+  animation: moveRight 40s linear infinite;
+}
+
+.cloud__right {
+  top: -88.2vh;
+  left: 70vw;
+  animation: moveLeft 40s linear infinite;
+}
+
+.section {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 10rem;
+}
+
+.article {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 40rem;
+}
+
+.section__first {
+  margin-top: 15rem;
+}
+
+.article__desc {
+  padding-top: 1rem;
+  font-size: 2.2rem;
+  line-height: 2.6rem;
+}
+
+.article__title {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2.2rem;
+  line-height: 2.8rem;
+}
+
+.article__intro {
+  flex: 2;
+}
+
+.article__intro__title {
+  font-family: HereJustNow;
+  font-size: 4rem;
+  text-transform: uppercase;
+}
+
+.article__intro__desc {
+  width: 35rem;
+}
+
+.article__newsletter {
+  flex: 1;
+}
+
+.newsletter {
+  display: flex;
+  flex-flow: column;
+  padding-top: 1.5rem;
+}
+
+.newsletter__input {
+  @apply --button-style;
+  text-transform: lowercase;
+  padding-left: 2rem;
+  font-weight: normal;
+  color: black;
+}
+
+.article__button {
+  @apply --button-style;
+}
+
+.section__second {
+  align-items: center;
+  padding-bottom: 20rem;
+}
+
+.article__start-event__title {
+  font-family: HereJustNow;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+}
+
+.article__img {
+  position: relative;
+  z-index: -1;
+}
+
+.article__newsletter__img {
+  left: -31rem;
+  top: -20rem;
+}
+
+.article__intro__img {
+  left: -30rem;
+  top: -13rem;
+}
+
+.article__programme__img {
+  left: 14rem;
+  top: -8rem;
+}
+
+.article__dokbewoner__img {
+  left: 20rem;
+}
+
+.first-events {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 70rem;
+}
+
+.event {
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem 2rem;
+  width: 50%;
+}
+
+.sponsors {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+}
+
+.sponsors__sponsor {
+  width: 10rem;
+  height: auto;
+  padding: 0 1rem;
+  filter: grayscale(100%);
+}
+
+/*____PROGRAMMA___*/
+
+.page-header {
+  margin: 2rem 4rem;
+}
+
+.page__title {
+  display: flex;
+  align-items: flex-end;
+  font-family: HereJustNow-Out;
+  font-size: 5.2rem;
+  text-transform: uppercase;
+}
+
+.page__desc {
+  margin-top: 1rem;
+  width: 50vw;
+}
+
+.selector__desc {
+  width: 28vw;
+}
+
+.selector__desc, .page__desc {
+  font-size: 2.2rem;
+}
+
+.selectors {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 6rem;
+}
+
+.selector {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.selector__title {
+  font-family: HereJustNow;
+  font-size: 4rem;
+  text-transform: uppercase;
+}
+
+.dropdown {
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.zones {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  background-color: white;
+  padding: 1rem 0;
+  position: relative;
+  transform: translateY(-152.2rem);
+  transition: .3s ease;
+  height: 55vh;
+  overflow: scroll;
+  visibility: hidden;
+}
+
+.dropdown-arrow {
+  margin-top: 1.5rem;
+  transform: translateY(-57.5rem);
+  transition: .3s ease;
+  visibility: visible;
+}
+
+.zone {
+  padding: 2rem 3rem;
+  transition: .2s ease;
+}
+
+.zone:hover {
+  transform: scale(1.1);
+}
+
+.select-style {
+  border: .25rem solid black;
+  padding: 1rem 3rem;
+  background: white;
+  background-size: 3rem;
+}
+
+.selector__form {
+  padding-top: 2rem;
+}
+
+.tags__form {
+  padding-top: 2.4rem;
+}
+
+.date__form {
+  display: flex;
+  justify-content: space-between;
+  width: 29rem;
+  margin-top: .4rem;
+}
+
+.selector__item {
+  background: none;
+  appearance: none;
+  border-radius: none;
+  border: none;
+  font-size: 1.8rem;
+}
+
+@media (width <= 1315px) {
+
+  .article {
+    flex-flow: row;
+  }
+
+  .cloud__right {
+    top: -95vh;
+  }
+
+  .cloud__left {
+    top: -20vh;
+  }
+
+}
+
+@media (width <= 1360px) {
+
+  .header-text__specifics {
+    width: 30rem;
+  }
+
 }

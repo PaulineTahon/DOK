@@ -1,0 +1,13 @@
+@font-face {
+  font-family: Verlag;
+  src: url(`VerlagBook.woff2`) format(`woff2`), url(`VerlagBook.woff`) format(`woff`);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: VerlagBold;
+  src: url(`VerlagBold.woff2`) format(`woff2`), url(`VerlagBold.woff`) format(`woff`);
+  font-weight: bold;
+  font-style: normal;
+}

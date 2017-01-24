@@ -1,0 +1,6 @@
+@font-face {
+  font-family: HereJustNow;
+  src: url(`HereJustNow.woff2`) format(`woff2`), url(`HereJustNow.woff`) format(`woff`);
+  font-weight: normal;
+  font-style: normal;
+}
