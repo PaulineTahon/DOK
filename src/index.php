@@ -15,7 +15,7 @@ $routes = array(
   'programma' => array(
     'controller' => 'Events',
     'action' => 'programma'
-  )
+  ),
 );
 
 if(empty($_GET['page'])) {

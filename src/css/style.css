@@ -223,7 +223,7 @@ body {
 
   &__start-event__title {
     font-family: HereJustNow;
-    font-size: 3.5rem;
+    font-size: 5rem;
     text-transform: uppercase;
   }
 
@@ -381,8 +381,8 @@ body {
   margin-top: 12rem;
 
   &-arrow {
-    margin-top: 5.5rem;
-    transform: translateY(-59.8rem);
+    margin-top: -9rem;
+    transform: translateY(12rem);
     transition: .3s ease;
     visibility: visible;
   }
@@ -396,7 +396,7 @@ body {
   position: relative;
   transform: translateY(-152.2rem);
   transition: .3s ease;
-  height: 55vh;
+  height: 73vh;
   overflow: scroll;
   visibility: hidden;
   z-index: 1000;
@@ -515,16 +515,18 @@ body {
 .events {
   padding-top: 27rem;
   display: flex;
+  justify-content: space-around;
 
   &__month {
     display: flex;
     width: 70vw;
     flex-wrap: wrap;
-    margin: 0 auto;
+    margin-left: 5rem;
+    margin-top: 1rem;
 
     &__event {
       width: 40rem;
-      margin: 0 auto;
+      margin-top: 1.5rem;
     }
   }
 }

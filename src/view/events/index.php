@@ -50,9 +50,10 @@
           </header>
           <div>
             <h2 class="article__title">Geen updates missen? <br />Schrijf je in op de nieuwsbrief!</h2>
-            <form class="newsletter" action="index.html" method="post">
-              <input class="newsletter__input" type="email" name="email" placeholder="nieuwsbrief@au.be"/>
-              <input class="article__button" type="submit" name="submit" value="SCHRIJF ME IN!">
+            <form class="newsletter" action="index.php" method="post" id="form">
+              <input class="newsletter__input" id="email" type="email" name="email" placeholder="nieuwsbrief@au.be" required/>
+              <p class="error"></p>
+              <button class="article__button" id="submit" type="submit" name="action" value="SCHRIJF ME IN!">SCHRIJF ME IN!</button>
             </form>
           </div>
           <img class="article__img article__newsletter__img"src="assets/svg/nieuwsbrief-bg.svg" alt="letterbox" width="450" height="350"/>

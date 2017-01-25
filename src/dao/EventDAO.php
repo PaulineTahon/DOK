@@ -12,7 +12,7 @@ class EventDAO extends DAO {
       LEFT OUTER JOIN `ma3_dok_locations` ON ma3_dok_locations.id = ma3_dok_events_locations.location_id
       LEFT OUTER JOIN `ma3_dok_events_tags` ON ma3_dok_events.id = ma3_dok_events_tags.event_id
       LEFT OUTER JOIN `ma3_dok_tags` ON ma3_dok_tags.id = ma3_dok_events_tags.tag_id
-      WHERE 1 ORDER BY `start`
+      WHERE 1
     ";
     $conditionSqls = array();
     $conditionParams = array();
@@ -143,4 +143,28 @@ class EventDAO extends DAO {
     return $tagsByEventId;
   }
 
+  public function create( $data ){
+    $errors = $this->validateCreateData( $data );
+
+    if(empty($errors)) {
+      $sql = "INSERT INTO `ma3_dok_newsletter`(`email`) VALUES(:email)";
+      $stmt = $this->pdo->prepare($sql);
+      $stmt->bindValue(':email', $data["email"]);
+      if($stmt->execute()){
+        echo "pushed";
+      }
+    }
+  }
+
+  public function validateCreateData( $data ){
+
+    $errors = [];
+
+    if( !isset($data["email"]) || empty( $data["email"]) ){
+      $errors[] = "Vul een email adres in.";
+    }
+
+    return $errors;
+
+  }
 }

@@ -24,28 +24,36 @@
             <h1 class="selector__title">zones</h1>
             <p class="selector__desc">DOK heeft voor elk wat wils. Het telt 6 zones waar telkens iets anders te beleven valt. Ontdek ze hier!</p>
             <div class="dropdown">
-              <ul class="zones">
-                <li class="zone zone__terras">
-                  <img src="assets/svg/dok-terras.svg" alt="DOK terras" width="400" height="200"/>
-                </li>
-                <li class="zone zone__strand">
-                  <img src="assets/svg/dok-strand.svg" alt="DOK strand" width="400" height="200"/>
-                </li>
-                <li class="zone zone__voortuin">
-                  <img src="assets/svg/dok-voortuin.svg" alt="DOK voortuin" width="400" height="200"/>
-                </li>
-                <li class="zone zone__kantine">
-                  <img src="assets/svg/dok-kantine.svg" alt="DOK kantine" width="400" height="200"/>
-                </li>
-                <li class="zone zone__box">
-                  <img src="assets/svg/dok-box.svg" alt="DOK box" width="400" height="280"/>
-                </li>
-                <li class="zone zone__markt">
-                  <img src="assets/svg/dok-markt.svg" alt="DOK markt" width="400" height="200"/>
-                </li>
-              </ul>
-              <img class="dropdown-arrow" src="assets/svg/dropdown-arrow.svg" alt="dropdown arrow" width="50" height="50"/>
+              <form method="" action="programma.php?page=getLocation">
+                <ul class="zones">
+                  <li class="zone zone__terras">
+                    <input type="hidden" type="text" name="location" value="terras">
+                    <input type="image" name="submit" src="assets/svg/dok-terras.svg" alt="DOK terras" width="400" height="200" alt="submit">
+                  </li>
+                  <li class="zone zone__strand">
+                    <input type="hidden" type="text" name="location" value="strand">
+                    <input type="image" name="submit" src="assets/svg/dok-strand.svg" alt="DOK strand" width="400" height="200" alt="submit">
+                  </li>
+                  <li class="zone zone__voortuin">
+                    <input type="hidden" type="text" name="location" value="voortuin">
+                    <input type="image" name="submit" src="assets/svg/dok-voortuin.svg" alt="DOK voortuin" width="400" height="200" alt="submit">
+                  </li>
+                  <li class="zone zone__kantine">
+                    <input type="hidden" type="text" name="location" value="kantine">
+                    <input type="image" name="submit" src="assets/svg/dok-kantine.svg" alt="DOK kantine" width="400" height="200" alt="submit">
+                  </li>
+                  <li class="zone zone__box">
+                    <input type="hidden" type="text" name="location" value="box">
+                    <input type="image" name="submit" src="assets/svg/dok-box.svg" alt="DOK box" width="400" height="280" alt="submit">
+                  </li>
+                  <li class="zone zone__markt">
+                    <input type="hidden" type="text" name="location" value="markt">
+                    <input type="image" name="submit" src="assets/svg/dok-markt.svg" alt="DOK markt" width="400" height="200" alt="submit">
+                  </li>
+                </ul>
+              </form>
             </div>
+            <img class="dropdown-arrow" src="assets/svg/dropdown-arrow.svg" alt="dropdown arrow" width="50" height="50"/>
           </article>
           <article class="selector selector__tags">
             <h1 class="selector__title">tags</h1>
@@ -112,9 +120,9 @@
           <header>
             <h1 class="article__start-event__title"></h1>
           </header>
-          <div class="events__month">
+          <h2 class="select__message"></h2>
           <?php foreach($events as $event): ?>
-            <article class="events__month__event event">
+            <article class="events__month__event event?>">
               <div class="event__info">
                 <div class="">
                   <p class="event__start article__desc"><?php echo $event['start'];?></p>
