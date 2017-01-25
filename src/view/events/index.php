@@ -75,9 +75,8 @@
           </header>
           <div class="first-events">
           <?php foreach($events as $event): ?>
-            <form class="" action="index.php?page=detail&amp;id=<?php echo $event['id'] ?>" method="post">
               <article class="events__event event <?php foreach($event['locations'] as $location): echo $location['name'];?> <?php endforeach;?>">
-                  <button type="submit" class="event__info submit__button">
+                  <a href="index.php?page=detail&amp;id=<?php echo $event["id"] ?>" class="event__info">
                     <div class="">
                       <p class="event__start article__desc"><?php echo $event['start'];?></p>
                       <img src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="100" height="100"/>
@@ -90,7 +89,7 @@
                         <p class="event__endtime article__desc"><?php echo $event['end'];?></p>
                       </div>
                     </div>
-                  </button>
+                  </a>
                 </article>
             </form>
           <? endforeach;?>

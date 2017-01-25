@@ -10,6 +10,6 @@
         <li><a class="header-menu__item" href="#">contact</a></li>
       </ul>
     </nav>
-    <h1 class="detail__title"><?php echo $event['id']; ?></h1>
+    <h1 class="detail__title"><?php echo $event['title']; ?></h1>
   </header>
 </section>
