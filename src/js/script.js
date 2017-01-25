@@ -62,7 +62,6 @@ const getDatetimeSubstings = () => {
   const startDates = document.querySelectorAll(`.event__start`),
     startTimes = document.querySelectorAll(`.event__starttime`),
     endTimes = document.querySelectorAll(`.event__endtime`);
-  console.log(startDates);
 
   for (let i = 0;i < startDates.length;i ++) {
     console.log();
@@ -74,18 +73,22 @@ const getDatetimeSubstings = () => {
 
 const dropdownHandler = e => {
   const dropdown = e.currentTarget;
-  console.log(e.currentTarget);
   const zones = document.querySelector(`.zones`);
   if (zones.style.visibility === `visible`) {
     zones.style.visibility = `hidden`;
     zones.style.transform = `translateY(-152.2rem)`;
     dropdown.style.transform = `translateY(12rem) rotate(0deg)`;
+    document.querySelector(`.events__month`).style.display = ``;
     document.querySelector(`.regulars`).style.display = ``;
-    currentMonth.style.display = ``;
     document.querySelector(`.events__month`).style.marginTop = `1rem`;
     document.querySelector(`.events__month`).style.marginLeft = `5rem`;
-    document.querySelector(`.events__month`).style.width = `70vw`;
-    document.querySelector(`.select__message`).innerHTML = ``;
+    document.querySelector(`.events__month`).style.width = `75vw`;
+    document.querySelector(`.events__month`).style.marginTop = `0`;
+    currentMonth.innerHTML = `${monthArray[0]}`;
+    currentMonth.style.marginLeft = `0`;
+    currentMonth.style.fontSize = `5rem`;
+    currentMonth.style.fontFamily = `HereJustNow`;
+    currentMonth.style.fontWeight = `normal`;
 
 
   } else {
@@ -93,11 +96,16 @@ const dropdownHandler = e => {
     zones.style.transform = `translateY(0)`;
     dropdown.style.transform = `rotate(-180deg) translateY(-88rem)`;
     document.querySelector(`.regulars`).style.display = `none`;
-    currentMonth.style.display = `none`;
-    document.querySelector(`.events__month`).style.marginTop = `-20rem`;
+    document.querySelector(`.events__month`).style.display = `none`;
     document.querySelector(`.events__month`).style.marginLeft = `50rem`;
     document.querySelector(`.events__month`).style.width = `50vw`;
-    document.querySelector(`.select__message`).innerHTML = `Selecteer een zone`;
+    document.querySelector(`.events__month`).style.marginTop = `-20rem`;
+    currentMonth.innerHTML = `Selecteer een zone`;
+    currentMonth.style.marginLeft = `80rem`;
+    currentMonth.style.fontSize = `2.5rem`;
+    currentMonth.style.fontFamily = `arial`;
+    currentMonth.style.fontWeight = `bold`;
+
   }
 
 };

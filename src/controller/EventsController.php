@@ -12,18 +12,28 @@ class EventsController extends Controller {
   }
 
   public function index() {
-    $this->_processAddItemFormIfNeeded();
-    $events = $this->eventDAO->getFirstFourEvents();
+    $conditions[0] = array(
+      'field' => 'start',
+      'comparator' => '<=',
+      'value' => '2017-03-01 00:00:00'
+    );
+    $conditions[1] = array(
+      'field' => 'end',
+      'comparator' => '>=',
+      'value' => '2017-03-01 00:00:00'
+    );
+
+    $events = $this->eventDAO->search($conditions);
     if($this->isAjax) {
-		      header('Content-Type: application/json');
-		      echo json_encode($events);
-		      exit();
-		    }
+          header('Content-Type: application/json');
+          echo json_encode($events);
+          exit();
+        }
     $this->set('events', $events);
   }
 
   public function programma() {
-    //$conditions = array();
+    $conditions = array();
 
     //example: search on title
     // $conditions[0] = array(
@@ -33,11 +43,11 @@ class EventsController extends Controller {
     // );
 
   //  example: search on location name
-    $conditions[0] = array(
-      'field' => 'location',
-      'comparator' => 'like',
-      'value' => 'voortuin'
-    );
+    // $conditions[0] = array(
+    //   'field' => 'location',
+    //   'comparator' => 'like',
+    //   'value' => 'voortuin'
+    // );
 
     //example: search on organiser id
     // $conditions[0] = array(
@@ -60,16 +70,16 @@ class EventsController extends Controller {
     //   'value' => 'gastvrijheid'
     // );
 
-    // $conditions[0] = array(
-    //   'field' => 'end',
-    //   'comparator' => '>=',
-    //   'value' => '2017-05-01 00:00:00'
-    // );
-    // $conditions[1] = array(
-    //   'field' => 'end',
-    //   'comparator' => '<',
-    //   'value' => '2017-06-01 00:00:00'
-    // );
+    $conditions[0] = array(
+      'field' => 'end',
+      'comparator' => '>=',
+      'value' => '2017-05-01 00:00:00'
+    );
+    $conditions[1] = array(
+      'field' => 'end',
+      'comparator' => '<',
+      'value' => '2017-06-01 00:00:00'
+    );
 
     //example: search on location, with certain end date + time
     // $conditions[0] = array(
@@ -97,6 +107,18 @@ class EventsController extends Controller {
     }
   }
 
+  public function detail () {
+    $id = $_GET["id"];
+
+    $events = $this->eventDAO->selectById($id);
+    if($this->isAjax) {
+          header('Content-Type: application/json');
+          echo json_encode($events);
+          exit();
+        }
+    $this->set('events', $events);
+  }
+
   public function getLocationEvents () {
      $conditions[0] = array(
       'field' => 'location_id',
@@ -105,6 +127,11 @@ class EventsController extends Controller {
      );
 
      $events = $this->eventDAO->search($conditions);
+     if($this->isAjax) {
+           header('Content-Type: application/json');
+           echo json_encode($events);
+           exit();
+         }
      $this->set('events', $events);
   }
 

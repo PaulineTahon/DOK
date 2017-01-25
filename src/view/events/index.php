@@ -1,4 +1,4 @@
-  <body>
+
     <header class="header">
       <nav>
         <ul class="header-menu">
@@ -71,26 +71,28 @@
         </article>
         <article class="article article__upcoming">
           <header>
-            <h1 class="article__start-event__title">Upcoming Events</h1>
+            <h1 class="article__start-event__title mai__first">Upcoming Events</h1>
           </header>
           <div class="first-events">
           <?php foreach($events as $event): ?>
-            <article class="events__event event">
-              <div class="event__info">
-                <div class="">
-                  <p class="event__start article__desc"><?php echo $event['start'];?></p>
-                  <img src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="100" height="100"/>
-                </div>
-                <div class="event__specifics">
-                  <header class="article__title"><h2><?php echo $event['title']; ?></h2></header>
-                  <div class="event__time">
-                    <p class="event__starttime article__desc"><?php echo $event['start'];?></p>
-                    <p class="time__separator">-</p>
-                    <p class="event__endtime article__desc"><?php echo $event['end'];?></p>
-                  </div>
-                </div>
-              </div>
-            </article>
+            <form class="" action="index.php?page=detail&amp;id=<?php echo $event['id'] ?>" method="post">
+              <article class="events__event event <?php foreach($event['locations'] as $location): echo $location['name'];?> <?php endforeach;?>">
+                  <button type="submit" class="event__info submit__button">
+                    <div class="">
+                      <p class="event__start article__desc"><?php echo $event['start'];?></p>
+                      <img src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="100" height="100"/>
+                    </div>
+                    <div class="event__specifics">
+                      <header class="article__title"><h2><?php echo $event['title']; ?></h2></header>
+                      <div class="event__time">
+                        <p class="event__starttime article__desc"><?php echo $event['start'];?></p>
+                        <p class="time__separator">-</p>
+                        <p class="event__endtime article__desc"><?php echo $event['end'];?></p>
+                      </div>
+                    </div>
+                  </button>
+                </article>
+            </form>
           <? endforeach;?>
           </div>
         </article>
@@ -130,4 +132,3 @@
       <img class="sponsors__sponsor" src="assets/img/thuis-in-de-stad.jpg" alt="Thuis in de stad" width="150" height="96"/>
       <img class="sponsors__sponsor" src="assets/img/vlaamse-overheid.jpg" alt="Vlaamse Overheid" width="150" height="44"/>
     </footer>
-  </body>

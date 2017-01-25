@@ -1,4 +1,4 @@
-  <body>
+
     <header class="page">
       <nav>
         <ul class="header-menu">
@@ -59,9 +59,16 @@
             <h1 class="selector__title">tags</h1>
             <p class="selector__desc"> Zoek door de DOKprogramma met de tags om zo snel mogelijk te vinden wat zoekt!</p>
             <form class="selector__form tags__form" action="index.html" method="post">
-              <div class="select-style">
+              <div class="selector__style">
+                <img class="selector__img" src="assets/svg/icon-select.svg" alt="dropdown arrow" width="20" height="20"/>
                 <select class="selector__item tags" name="day">
-                  <option value="tag">SELECTEER TAGS</option>
+                  <option class="selector__option" value="tag">SELECTEER TAGS</option>
+                  <option class="selector__option" value=""></option>
+                  <option class="selector__option" value=""></option>
+                  <option class="selector__option" value=""></option>
+                  <option class="selector__option" value=""></option>
+                  <option class="selector__option" value=""></option>
+                  <option class="selector__option" value=""></option>
                 </select>
               </div>
             </form>
@@ -70,14 +77,16 @@
             <h1 class="selector__title">datum</h1>
             <p class="selector__desc">Wil je te weten komen wat er op een specifieke dag of maand op DOK te beleven valt? Zoek het hier!</p>
             <form class="selector__form date__form" action="index.html" method="post">
-              <div class="select-style date-style">
+              <div class="selector__style date-style">
+                <img class="selector__img" src="assets/svg/icon-select.svg" alt="dropdown arrow" width="20" height="20"/>
                 <select class="selector__item date-day" name="date-day">
-                  <option value="DAG">DAG</option>
+                  <option class="selector__option" value="DAG">DAG</option>
                 </select>
               </div>
-              <div class="select-style">
+              <div class="selector__style">
+                <img class="selector__img" src="assets/svg/icon-select.svg" alt="dropdown arrow" width="20" height="20"/>
                 <select class="selector__item date-day" name="date-day">
-                <option value="MAAND">MAAND</option>
+                  <option class="selector__option" value="MAAND">MAAND</option>
                 </select>
               </div>
             </form>
@@ -120,10 +129,10 @@
           <header>
             <h1 class="article__start-event__title"></h1>
           </header>
-          <h2 class="select__message"></h2>
+          <div class="events__month">
           <?php foreach($events as $event): ?>
-            <article class="events__month__event event?>">
-              <div class="event__info">
+            <article class="events__month__event event <?php foreach($event['locations'] as $location): echo $location['name'];?> <?php endforeach;?>">
+              <a href="index.php?page=detail&amp;id=<?php echo $event["id"] ?>" class="event__info">
                 <div class="">
                   <p class="event__start article__desc"><?php echo $event['start'];?></p>
                   <img src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="100" height="100"/>
@@ -136,11 +145,10 @@
                     <p class="event__endtime article__desc"><?php echo $event['end'];?></p>
                   </div>
                 </div>
-              </div>
+              </a>
             </article>
           <? endforeach;?>
           </div>
         </article>
       </section>
     </main>
-  </body>
