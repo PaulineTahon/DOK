@@ -108,15 +108,20 @@ class EventsController extends Controller {
   }
 
   public function detail () {
-    $id = $_GET["id"];
 
-    $events = $this->eventDAO->selectById($id);
+    if( empty( $_GET["id"] ) ){
+			$this->redirect('index.php');
+		}
+
+		$id = $_GET["id"];
+
+    $event = $this->eventDAO->selectById($id);
     if($this->isAjax) {
           header('Content-Type: application/json');
-          echo json_encode($events);
+          echo json_encode($event);
           exit();
         }
-    $this->set('events', $events);
+    $this->set('event', $event);
   }
 
   public function getLocationEvents () {
