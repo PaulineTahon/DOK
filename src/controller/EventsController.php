@@ -59,29 +59,17 @@ class EventsController extends Controller {
     //   'value' => 'gastvrijheid'
     // );
 
-    //example: events ending in may 2017
-    // $conditions[0] = array(
-    //   'field' => 'end',
-    //   'comparator' => '>=',
-    //   'value' => '2017-05-01 00:00:00'
-    // );
-    // $conditions[1] = array(
-    //   'field' => 'end',
-    //   'comparator' => '<',
-    //   'value' => '2017-06-01 00:00:00'
-    // );
 
-    //example: events happening on march first
-    // $conditions[0] = array(
-    //   'field' => 'start',
-    //   'comparator' => '<=',
-    //   'value' => '2017-03-01 00:00:00'
-    // );
-    // $conditions[1] = array(
-    //   'field' => 'end',
-    //   'comparator' => '>=',
-    //   'value' => '2017-03-01 00:00:00'
-    // );
+    $conditions[0] = array(
+      'field' => 'end',
+      'comparator' => '>=',
+      'value' => '2017-05-01 00:00:00'
+    );
+    $conditions[1] = array(
+      'field' => 'end',
+      'comparator' => '<',
+      'value' => '2017-06-01 00:00:00'
+    );
 
     //example: search on location, with certain end date + time
     // $conditions[0] = array(
@@ -96,6 +84,11 @@ class EventsController extends Controller {
     // );
 
     $events = $this->eventDAO->search($conditions);
+    if($this->isAjax) {
+          header('Content-Type: application/json');
+          echo json_encode($events);
+          exit();
+        }
     $this->set('events', $events);
   }
 

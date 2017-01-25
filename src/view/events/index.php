@@ -75,17 +75,23 @@
           <div class="first-events">
           <?php foreach($events as $event): ?>
             <article class="events__event event">
-              <header class="article__title"><h2><?php echo $event['title']; ?></h2></header>
-              <p>
-                <dl class="event__info">
-                  <dt class="hidden">start</dt><dd class="event__start article__desc"><?php echo $event['start'];?></dd>
-                  <dt class="hidden">start</dt><dd class="event__starttime article__desc"><?php echo $event['start'];?></dd>
-                  <dt class="hidden">end</dt><dd class="event__endtime article__desc"><?php echo $event['end'];?></dd>
-                </dl>
-              </p>
+              <div class="event__info">
+                <div class="">
+                  <p class="event__start article__desc"><?php echo $event['start'];?></p>
+                  <img src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="100" height="100"/>
+                </div>
+                <div class="event__specifics">
+                  <header class="article__title"><h2><?php echo $event['title']; ?></h2></header>
+                  <div class="event__time">
+                    <p class="event__starttime article__desc"><?php echo $event['start'];?></p>
+                    <p class="time__separator">-</p>
+                    <p class="event__endtime article__desc"><?php echo $event['end'];?></p>
+                  </div>
+                </div>
+              </div>
             </article>
           <? endforeach;?>
-        </div>
+          </div>
         </article>
       </section>
       <section class="section section__third">

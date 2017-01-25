@@ -12,7 +12,7 @@ class EventDAO extends DAO {
       LEFT OUTER JOIN `ma3_dok_locations` ON ma3_dok_locations.id = ma3_dok_events_locations.location_id
       LEFT OUTER JOIN `ma3_dok_events_tags` ON ma3_dok_events.id = ma3_dok_events_tags.event_id
       LEFT OUTER JOIN `ma3_dok_tags` ON ma3_dok_tags.id = ma3_dok_events_tags.tag_id
-      WHERE 1
+      WHERE 1 ORDER BY `start`
     ";
     $conditionSqls = array();
     $conditionParams = array();

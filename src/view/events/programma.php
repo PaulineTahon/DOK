@@ -1,38 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-
-    <script type="text/javascript">
-
-      WebFontConfig = {
-        custom: {
-          families: ['HereJustNow', 'HereJustNow-Out', 'Verlag'],
-          urls: ['assets/fonts/HereJustNow/HereJustNow.css', 'assets/fonts/HereJustNow-Out/HereJustNow-Out.css', 'assets/fonts/Verlag/Verlag.css']
-        }
-      };
-
-      (function() {
-        var wf = document.createElement('script');
-        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-        wf.type = 'text/javascript';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(wf, s);
-      })();
-
-    </script>
-
-    <meta charset="utf-8">
-    <meta name="description" content="DOK Gent - werfplek voor verpozing en creatieve manoeuvres"/>
-    <meta name="author" content="Pauline Tahon"/>
-    <meta name="keywords" content="DOK werfplek oudedokken Gent DOKbewoners"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>DOK</title>
-
-  </head>
   <body>
-    <header>
+    <header class="page">
       <nav>
         <ul class="header-menu">
           <li class="header-menu__item"><a href="index.php"><img src="assets/svg/dok-logo.svg" alt="home" width="80" height="40"></a></li>
@@ -43,13 +10,13 @@
           <li><a class="header-menu__item" href="#">contact</a></li>
         </ul>
       </nav>
-      <div class="page-header">
-        <div class="page__title">
+      <section class="page__header">
+        <article class="page__title">
           <img src="assets/svg/dok-logo.svg" alt="DOK logo" width="120" height="60"/>
           <h1 class="page__title__text">Programma</h1>
-        </div>
-        <p class="page__desc">Het DOKseizoen is nog niet begonnen, maar wij zijn al volop aan het plannen om er een onvergetelijke editie van te maken! Filter het DOKprogramma of browse naar hartelustom te zien wat je te wachten staat!</p>
-      </div>
+        </article>
+        <p class="page__desc">Het DOKseizoen is nog niet begonnen, maar wij zijn al volop aan het plannen om er een onvergetelijke editie van te maken! Filter het DOKprogramma of browse naar hartelust om te zien wat je te wachten staat!</p>
+      </section>
     </header>
     <main>
       <section class="selectors">
@@ -110,43 +77,62 @@
       </section>
       <section class="regulars">
         <header>
-          <h1>Dok's vaste waarden</h1>
+          <h1 class="regulars__vast">Dok's<br />vaste<br /> waarden</h1>
         </header>
-        <article class="regular koffie">
-          <h2 class="regular__day">Elke zondag</h2>
-          <h3 class="regular__event">Koffie, taart &mp; gazetten</h3>
-          <p class="regular__time">10:00 - 19:00</p>
-          <img src="assets/svg/" alt="">
+        <article class="regular regular__koffie">
+          <div class="regular__text">
+            <h2 class="regular__day">Elke zondag</h2>
+            <h3 class="regular__event">Koffie, taart &amp; gazetten</h3>
+            <p class="regular__time">10:00 - 19:00</p>
+          </div>
+          <img class="regular__img" src="assets/svg/koffie-vast.svg" alt="koffie - vaste waarden" width="500" height="300"/>
         </article>
-        <article class="regular koffie">
-          <h2 class="regular__day">Elke zondag</h2>
-          <h3 class="regular__event">Dok(rommel)markt</h3>
-          <p class="regular__time">10:00 - 19:00</p>
-          <img src="assets/svg/" alt="">
+        <article class="regular regular__markt">
+          <div class="regular__text">
+            <h2 class="regular__day">Elke zondag</h2>
+            <h3 class="regular__event">Dok(rommel)markt</h3>
+            <p class="regular__time">10:00 - 19:00</p>
+          </div>
+          <img class="regular__img" src="assets/svg/markt-vast.svg" alt="(rommel)markt - vaste waarden" width="500" height="380"/>
         </article>
-        <article class="regular koffie">
-          <h2 class="regular__day">Elke zondag</h2>
-          <h3 class="regular__event">Gezellige dj - cosy cozy</h3>
-          <p class="regular__time">14:00 - 19:00</p>
-          <img src="assets/svg/" alt="">
+        <article class="regular regular__cosy">
+          <header class="hidden">
+            <h1>Dj Cosy Cozy</h1>
+          </header>
+          <div class="regular__text">
+            <h2 class="regular__day">Elke zondag</h2>
+            <h3 class="regular__event">Gezellige dj - cosy cozy</h3>
+            <p class="regular__time">14:00 - 19:00</p>
+          </div>
+          <img class="regular__img" src="assets/svg/cosy-vast.svg" alt="Dj cosy cozy - vaste waarden" width="500" height="300"/>
         </article>
       </section>
       <section class="events">
-        <h1 class="events__month">Events</h1>
-        <?php foreach($events as $event): ?>
-          <article class="events__event event">
-            <header class="event__title"><h2><?php echo $event['title']; ?></h2></header>
-            <dl class="event__info">
-              <dt class="event__start">start</dt><dd><?php echo $event['start'];?></dd>
-              <dt class="event__end">end</dt><dd><?php echo $event['end'];?></dd>
-              <dt class="event__organiser">organiser</dt><dd><?php echo $event['organiser'];?></dd>
-              <dt class="event__title">title</dt><dd><?php echo $event['title'];?></dd>
-              <dt class="event__locations">locations</dt><dd><ul><?php foreach($event['locations'] as $location): ?><li><?php echo $location['name'];?></li><?php endforeach;?></ul></dd>
-              <dt class="event__tags">tags</dt><dd><ul><?php foreach($event['tags'] as $tag): ?><li><?php echo $tag['tag'];?></li><?php endforeach;?></ul></dd>
-              <dt class="event__desc">description</dt><dd><pre><?php echo $event['description'];?></pre></dd>
-            </dl>
-          </article>
-        <? endforeach;?>
+        <article class="article__events article__upcoming">
+          <header>
+            <h1 class="article__start-event__title"></h1>
+          </header>
+          <div class="events__month">
+          <?php foreach($events as $event): ?>
+            <article class="events__month__event event">
+              <div class="event__info">
+                <div class="">
+                  <p class="event__start article__desc"><?php echo $event['start'];?></p>
+                  <img src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="100" height="100"/>
+                </div>
+                <div class="event__specifics">
+                  <header class="article__title"><h2><?php echo $event['title']; ?></h2></header>
+                  <div class="event__time">
+                    <p class="event__starttime article__desc"><?php echo $event['start'];?></p>
+                    <p class="time__separator">-</p>
+                    <p class="event__endtime article__desc"><?php echo $event['end'];?></p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          <? endforeach;?>
+          </div>
+        </article>
       </section>
     </main>
   </body>
