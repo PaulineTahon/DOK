@@ -1,10 +1,21 @@
+import es6Promise from 'es6-promise';
+import fetch from 'isomorphic-fetch';
+es6Promise.polyfill();
+
 const $form = document.forms[0];
 const monthArray = [`mei`, `juni`, `juli`, `augustus`, `september`],
-  currentMonth = document.querySelector(`.article__start-event__title`);
+  currentMonth = document.querySelector(`.article__start-event__title`),
+  submits = document.querySelectorAll(`form`);
+  // submitbutton = document.querySelectorAll(`submit`),
+  // dataInput = document.querySelectorAll(`data`);
 
 let index = 0;
+  // location;
 
 const init = () => {
+
+  addsubmitForm();
+  checkIfSecondImg();
   getDatetimeSubstings();
 
   document.querySelector(`.dropdown-arrow`).addEventListener(`click`, dropdownHandler);
@@ -14,6 +25,38 @@ const init = () => {
   $form.addEventListener(`submit`, onFormSubmit);
   document.getElementsByName(`email`)[0].addEventListener(`input`, onEmailChange);
   document.getElementsByName(`email`)[0].addEventListener(`blur`, onEmailChange);
+};
+
+const addsubmitForm = () => {
+  submits.forEach(submit => {
+  //  submit.addEventListener(`click`, clearEvents);
+    submit.addEventListener(`click`, () => {
+      fetch(`index.php?=${Date.now()}`, {
+        headers: new Headers({
+          Accept: `application/json`
+        })
+      })
+      .then(r => r.json())
+      .then(results => {
+        showEvents(results);
+      });
+    });
+  });
+};
+
+const showEvents = results => {
+  results.forEach(result => {
+    console.log(result);
+  });
+};
+
+const checkIfSecondImg = () => {
+  const img = document.querySelectorAll(`.image`);
+  console.log(img);
+  console.log(img.length);
+  if (img.length > 3) {
+    img[1].parentNode.remove();
+  }
 };
 
 const onFormSubmit = event => {
@@ -74,7 +117,7 @@ const getDatetimeSubstings = () => {
 
   if (document.querySelector(`.article__title`).innerHTML === `BLANCO, ELIZABETH VAN DAM ‘IN LOVE’`) {
     document.querySelector(`.event__end`).classList.remove(`hidden`);
-    document.querySelector(`.date_separator`).classList.remove(`hidden`);
+    document.querySelector(`.date__separator`).classList.remove(`hidden`);
   }
 };
 

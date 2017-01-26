@@ -24,34 +24,32 @@
             <h1 class="selector__title">zones</h1>
             <p class="selector__desc">DOK heeft voor elk wat wils. Het telt 6 zones waar telkens iets anders te beleven valt. Ontdek ze hier!</p>
             <div class="dropdown">
-              <form method="" action="programma.php?page=getLocation">
-                <ul class="zones">
-                  <li class="zone zone__terras">
-                    <input type="hidden" type="text" name="location" value="terras">
-                    <input type="image" name="submit" src="assets/svg/dokterras.svg" alt="DOK terras" width="400" height="200" alt="submit">
-                  </li>
-                  <li class="zone zone__strand">
-                    <input type="hidden" type="text" name="location" value="strand">
-                    <input type="image" name="submit" src="assets/svg/dokstrand.svg" alt="DOK strand" width="400" height="200" alt="submit">
-                  </li>
-                  <li class="zone zone__voortuin">
-                    <input type="hidden" type="text" name="location" value="voortuin">
-                    <input type="image" name="submit" src="assets/svg/dokvoortuin.svg" alt="DOK voortuin" width="400" height="200" alt="submit">
-                  </li>
-                  <li class="zone zone__kantine">
-                    <input type="hidden" type="text" name="location" value="kantine">
-                    <input type="image" name="submit" src="assets/svg/dokkantine.svg" alt="DOK kantine" width="400" height="200" alt="submit">
-                  </li>
-                  <li class="zone zone__box">
-                    <input type="hidden" type="text" name="location" value="box">
-                    <input type="image" name="submit" src="assets/svg/dokbox.svg" alt="DOK box" width="400" height="280" alt="submit">
-                  </li>
-                  <li class="zone zone__markt">
-                    <input type="hidden" type="text" name="location" value="markt">
-                    <input type="image" name="submit" src="assets/svg/dokmarkt.svg" alt="DOK markt" width="400" height="200" alt="submit">
-                  </li>
-                </ul>
-              </form>
+              <div class="zones">
+                <form class="form" action="index.php?page=programma" class="zone zone__terras">
+                  <input class="data" type="hidden" type="text" name="location" value="terras">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokterras.svg" alt="DOK terras" width="400" height="200"/>
+                </form class="form" action="index.php?page=programma">
+                <form class="form" action="index.php?page=programma" class="zone zone__strand">
+                  <input class="data" type="hidden" type="text" name="location" value="strand">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokstrand.svg" alt="DOK strand" width="400" height="200"/>
+                </form class="form" action="index.php?page=programma">
+                <form class="form" action="index.php?page=programma" class="zone zone__voortuin">
+                  <input class="data" type="hidden" type="text" name="location" value="voortuin">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokvoortuin.svg" alt="DOK voortuin" width="400" height="200"/>
+                </form class="form" action="index.php?page=programma">
+                <form class="form" action="index.php?page=programma" class="zone zone__kantine">
+                  <input class="data" type="hidden" type="text" name="location" value="kantine">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokkantine.svg" alt="DOK kantine" width="400" height="200"/>
+                </form class="form" action="index.php?page=programma">
+                <form class="form" action="index.php?page=programma" class="zone zone__box">
+                  <input class="data" type="hidden" type="text" name="location" value="box">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokbox.svg" alt="DOK box" width="400" height="280"/>
+                </form class="form" action="index.php?page=programma">
+                <form class="form" action="index.php?page=programma" class="zone zone__markt">
+                  <input class="data" type="hidden" type="text" name="location" value="markt">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokmarkt.svg" alt="DOK markt" width="400" height="200"/>
+                </form class="form" action="index.php?page=programma">
+              </div>
             </div>
             <img class="dropdown-arrow" src="assets/svg/dropdown-arrow.svg" alt="dropdown arrow" width="50" height="50"/>
           </article>

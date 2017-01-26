@@ -19,6 +19,7 @@
     "eslint": "^3.13.1",
     "eslint-config-devine": "^1.6.1",
     "eslint-loader": "^1.6.1",
+    "es6-promise": "^4.0.5",
     "extract-text-webpack-plugin": "beta",
     "file-loader": "^0.9.0",
 

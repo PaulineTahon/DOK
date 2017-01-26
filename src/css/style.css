@@ -298,6 +298,12 @@ body {
   &__start {
     font-family: HereJustNow;
     font-size: 3rem;
+
+    &__detail {
+      font-family: arial;
+      font-size: 2rem;
+      font-weight: bold;
+    }
   }
 }
 
@@ -443,6 +449,7 @@ body {
 .zone {
   padding: 2rem 3rem;
   transition: .2s ease;
+  outline: none;
 
   &:hover {
     transform: scale(1.1);
@@ -550,11 +557,11 @@ body {
 .events {
   padding-top: 27rem;
   display: flex;
-  justify-content: space-around;
 
   &__month {
     display: flex;
-    width: 75vw;
+    justify-content: center;
+    width: 90vw;
     flex-wrap: wrap;
     margin-left: 5rem;
     margin-top: 1rem;
@@ -672,22 +679,86 @@ body {
 
 .detail {
   display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
   margin-top: 3rem;
 
   &__title {
     font-family: HereJustNow;
-  }
-
-  &__desc {
-    width: 50vw;
-    font-size: 2rem;
+    font-size: 3.5rem;
   }
 
   &__specifics {
     text-transform: uppercase;
     font-family: HereJustNow;
     font-size: 3rem;
+    padding-top: 3rem;
+
+    &__content {
+      font-family: arial;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
   }
+
+  &__info {
+    padding-left: 5rem;
+    padding-top: 3rem;
+
+    &__desc {
+      width: 40vw;
+      line-height: 2.4rem;
+      font-size: 2rem;
+      padding-top: 4rem;
+    }
+
+    &__basic {
+      padding: 0 2rem;
+    }
+  }
+
+  &__where-when {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 20vw;
+  }
+
+  &__time {
+    display: flex;
+  }
+
+  &__img {
+    margin-top: 10rem;
+    display: flex;
+    width: 45vw;
+    height: 50vh;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.separator {
+  padding: 0 1rem;
+}
+
+.clip__1 {
+  width: 45rem;
+  clip-path: url(#clippath__1);
+}
+
+.clip__2 {
+  margin-left: 2rem;
+  width: 32rem;
+  clip-path: url(#clippath__2);
+}
+
+.location__svg {
+  width: 40rem;
+  padding-top: 2rem;
 }
 
 @media (width <= 1315px) {

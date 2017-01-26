@@ -45,11 +45,6 @@ class EventsController extends Controller {
     // );
 
   //  example: search on location name
-    // $conditions[0] = array(
-    //   'field' => 'location',
-    //   'comparator' => 'like',
-    //   'value' => 'voortuin'
-    // );
 
     //example: search on organiser id
     // $conditions[0] = array(
@@ -109,6 +104,24 @@ class EventsController extends Controller {
     }
   }
 
+  public function getEventsByLocation () {
+    $location = $_GET["location"];
+
+    $conditions[0] = array(
+      'field' => 'location',
+      'comparator' => 'like',
+      'value' => $location
+    );
+
+    $events = $this->eventDAO->search($conditions);
+    if($this->isAjax) {
+          header('Content-Type: application/json');
+          echo json_encode($events);
+          exit();
+        }
+    $this->set('events', $events);
+  }
+
   public function detail () {
 
     if( empty( $_GET["id"] ) ){
@@ -130,22 +143,6 @@ class EventsController extends Controller {
           exit();
         }
     $this->set('events', $events);
-  }
-
-  public function getLocationEvents () {
-     $conditions[0] = array(
-      'field' => 'location_id',
-      'comparator' => '=',
-      'value' => $_POST['location']
-     );
-
-     $events = $this->eventDAO->search($conditions);
-     if($this->isAjax) {
-           header('Content-Type: application/json');
-           echo json_encode($events);
-           exit();
-         }
-     $this->set('events', $events);
   }
 
   public function _processAddItemFormIfNeeded() {
