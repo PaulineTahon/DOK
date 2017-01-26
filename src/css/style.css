@@ -584,6 +584,10 @@ body {
   &:hover {
     background-color: var(--zone-terras);
   }
+
+  &__detail {
+    color: var(--zone-terras);
+  }
 }
 
 .DOKStrand {
@@ -592,6 +596,10 @@ body {
   &:hover {
     background-color: var(--zone-strand);
   }
+
+  &__detail {
+    color: var(--zone-strand);
+  }
 }
 
 .DOKVoortuin {
@@ -599,6 +607,10 @@ body {
 
   &:hover {
     background-color: var(--zone-voortuin);
+  }
+
+  &__detail {
+    color: var(--zone-voortuin);
   }
 
   & .DOKKantine {
@@ -613,6 +625,10 @@ body {
     background-color: var(--zone-kantine);
   }
 
+  &__detail {
+    color: var(--zone-kantine);
+  }
+
   & .DOKVoortuin {
     border-right: 2rem solid var(--zone-voortuin);
   }
@@ -624,6 +640,10 @@ body {
   &:hover {
     background-color: var(--zone-box);
   }
+
+  &__detail {
+    color: var(--zone-box);
+  }
 }
 
 .DOKMarkt {
@@ -631,6 +651,10 @@ body {
 
   &:hover {
     background-color: var(--zone-markt);
+  }
+
+  &__detail {
+    color: var(--zone-markt);
   }
 }
 
@@ -642,6 +666,28 @@ body {
 .submit__button {
   background: transparent;
   border: none;
+}
+
+/*---DETAIL---*/
+
+.detail {
+  display: flex;
+  margin-top: 3rem;
+
+  &__title {
+    font-family: HereJustNow;
+  }
+
+  &__desc {
+    width: 50vw;
+    font-size: 2rem;
+  }
+
+  &__specifics {
+    text-transform: uppercase;
+    font-family: HereJustNow;
+    font-size: 3rem;
+  }
 }
 
 @media (width <= 1315px) {

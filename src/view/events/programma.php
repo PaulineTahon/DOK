@@ -28,27 +28,27 @@
                 <ul class="zones">
                   <li class="zone zone__terras">
                     <input type="hidden" type="text" name="location" value="terras">
-                    <input type="image" name="submit" src="assets/svg/dok-terras.svg" alt="DOK terras" width="400" height="200" alt="submit">
+                    <input type="image" name="submit" src="assets/svg/dokterras.svg" alt="DOK terras" width="400" height="200" alt="submit">
                   </li>
                   <li class="zone zone__strand">
                     <input type="hidden" type="text" name="location" value="strand">
-                    <input type="image" name="submit" src="assets/svg/dok-strand.svg" alt="DOK strand" width="400" height="200" alt="submit">
+                    <input type="image" name="submit" src="assets/svg/dokstrand.svg" alt="DOK strand" width="400" height="200" alt="submit">
                   </li>
                   <li class="zone zone__voortuin">
                     <input type="hidden" type="text" name="location" value="voortuin">
-                    <input type="image" name="submit" src="assets/svg/dok-voortuin.svg" alt="DOK voortuin" width="400" height="200" alt="submit">
+                    <input type="image" name="submit" src="assets/svg/dokvoortuin.svg" alt="DOK voortuin" width="400" height="200" alt="submit">
                   </li>
                   <li class="zone zone__kantine">
                     <input type="hidden" type="text" name="location" value="kantine">
-                    <input type="image" name="submit" src="assets/svg/dok-kantine.svg" alt="DOK kantine" width="400" height="200" alt="submit">
+                    <input type="image" name="submit" src="assets/svg/dokkantine.svg" alt="DOK kantine" width="400" height="200" alt="submit">
                   </li>
                   <li class="zone zone__box">
                     <input type="hidden" type="text" name="location" value="box">
-                    <input type="image" name="submit" src="assets/svg/dok-box.svg" alt="DOK box" width="400" height="280" alt="submit">
+                    <input type="image" name="submit" src="assets/svg/dokbox.svg" alt="DOK box" width="400" height="280" alt="submit">
                   </li>
                   <li class="zone zone__markt">
                     <input type="hidden" type="text" name="location" value="markt">
-                    <input type="image" name="submit" src="assets/svg/dok-markt.svg" alt="DOK markt" width="400" height="200" alt="submit">
+                    <input type="image" name="submit" src="assets/svg/dokmarkt.svg" alt="DOK markt" width="400" height="200" alt="submit">
                   </li>
                 </ul>
               </form>
@@ -135,6 +135,8 @@
               <a href="index.php?page=detail&amp;id=<?php echo $event["id"] ?>" class="event__info">
                 <div class="">
                   <p class="event__start article__desc"><?php echo $event['start'];?></p>
+                  <p class="date__separator hidden">-</p>
+                  <p class="event__end article__desc hidden"><?php echo $event['start'];?></p>
                   <img src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="100" height="100"/>
                 </div>
                 <div class="event__specifics">

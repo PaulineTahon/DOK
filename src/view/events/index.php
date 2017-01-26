@@ -79,6 +79,8 @@
                   <a href="index.php?page=detail&amp;id=<?php echo $event["id"] ?>" class="event__info">
                     <div class="">
                       <p class="event__start article__desc"><?php echo $event['start'];?></p>
+                      <p class="date__separator hidden">-</p>
+                      <p class="event__end hidden"><?php echo $event['end']; ?></p>
                       <img src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="100" height="100"/>
                     </div>
                     <div class="event__specifics">

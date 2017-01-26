@@ -12,6 +12,8 @@ class EventsController extends Controller {
   }
 
   public function index() {
+    $conditions = array();
+
     $conditions[0] = array(
       'field' => 'start',
       'comparator' => '<=',
@@ -113,15 +115,21 @@ class EventsController extends Controller {
 			$this->redirect('index.php');
 		}
 
-		$id = $_GET["id"];
+  	$id = $_GET["id"];
 
-    $event = $this->eventDAO->selectById($id);
+    $conditions[0] = array(
+      'field' => 'id',
+      'comparator' => '=',
+      'value' => $id
+    );
+
+    $events = $this->eventDAO->search($conditions);
     if($this->isAjax) {
           header('Content-Type: application/json');
-          echo json_encode($event);
+          echo json_encode($events);
           exit();
         }
-    $this->set('event', $event);
+    $this->set('events', $events);
   }
 
   public function getLocationEvents () {

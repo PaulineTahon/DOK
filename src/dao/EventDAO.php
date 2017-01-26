@@ -36,6 +36,8 @@ class EventDAO extends DAO {
         $columnName = 'ma3_dok_tags.id';
       } else if($columnName == 'tag') {
         $columnName = 'ma3_dok_tags.tag';
+      } else if($columnName == 'id') {
+        $columnName = 'ma3_dok_events.id';
       }
       //handle functions
       if(!empty($condition['function'])) {
@@ -82,13 +84,6 @@ class EventDAO extends DAO {
     $stmt->bindValue(':id', $id);
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
-  }
-
-  public function getFirstFourEvents() {
-    $sql = "SELECT * FROM `ma3_dok_events` WHERE `start` >= CURRENT_DATE() ORDER BY `start` ASC LIMIT 4";
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
   private function _getEventIdsFromResult(&$result) {
