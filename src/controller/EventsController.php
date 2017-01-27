@@ -37,6 +37,21 @@ class EventsController extends Controller {
   public function programma() {
     $conditions = array();
 
+    //  $locations = $_GET["locations"];
+
+    // $conditions[0] = array(
+    //   'field' => 'end',
+    //   'comparator' => '>=',
+    //   'value' => '2017-05-01 00:00:00'
+    // );
+    // $conditions[1] = array(
+    //   'field' => 'end',
+    //   'comparator' => '<',
+    //   'value' => '2017-06-01 00:00:00'
+    // );
+    // $locations = $_GET["locations"];
+    $this->_getEventsByLocation();
+
     //example: search on title
     // $conditions[0] = array(
     //   'field' => 'title',
@@ -67,17 +82,6 @@ class EventsController extends Controller {
     //   'value' => 'gastvrijheid'
     // );
 
-    $conditions[0] = array(
-      'field' => 'end',
-      'comparator' => '>=',
-      'value' => '2017-05-01 00:00:00'
-    );
-    $conditions[1] = array(
-      'field' => 'end',
-      'comparator' => '<',
-      'value' => '2017-06-01 00:00:00'
-    );
-
     //example: search on location, with certain end date + time
     // $conditions[0] = array(
     //   'field' => 'location',
@@ -105,28 +109,29 @@ class EventsController extends Controller {
   }
 
   public function _getEventsByLocation () {
-    if(!empty($_GET['location'])) {
-      $location = $_GET['location'];
-      var_dump($location);
+      if( !empty( $_GET["locations"] ) ){
 
-      $conditions[0] = array(
-        'field' => 'location',
-        'comparator' => 'like',
-        'value' => $location
-      );
+        $location = $_GET["locations"];
 
-      if($results = $events = $this->eventDAO->search($conditions)) {
-        if($this->isAjax) {
-          header('Content-Type: application/json');
-          echo json_encode($events);
-          exit();
+        $conditions[0] = array(
+          'field' => 'location',
+          'comparator' => 'like',
+          'value' => $location
+        );
+
+        if($events = $this->eventDAO->search($conditions)) {
+          if($this->isAjax) {
+            header('Content-Type: application/json');
+            echo json_encode($events);
+            exit();
+          }
+          $this->redirect('index.php');
         }
-        $this->redirect('index.php');
+        $this->set('events', $events);
+        var_dump($events);
       }
-      $this->set('events', $events);
-      var_dump($events);
-    }
   }
+
 
   public function detail () {
 

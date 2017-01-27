@@ -11,7 +11,7 @@ const config = {
     programma: `./src/js/programma.js`
   },
   output: {
-    path: path.resolve(`./dist`),
+    path: path.join(__dirname, `dist`),
     filename: `js/[name].js`,
     publicPath: publicPath
   },

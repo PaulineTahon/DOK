@@ -15,7 +15,7 @@ let index = 0;
 const init = () => {
 
   addSubmitForm();
-//  checkIfSecondImg();
+  //checkIfSecondImg();
   getDatetimeSubstings();
 
   document.querySelector(`.dropdown-arrow`).addEventListener(`click`, dropdownHandler);
@@ -34,25 +34,36 @@ const addSubmitForm = () => {
     console.log(form);
     form.addEventListener(`submit`, e => {
       e.preventDefault();
-      const location = form.querySelector(`.data`).value;
-      console.log(`click`);
+      if (currentMonth.style.display !== `none`) {
+        currentMonth.style.display = `none`;
+      }
+
+      const locations = form.querySelector(`.data`).value;
+      console.log(location);
       document.querySelector(`.events__month`).style.display = ``;
-      fetch(`index.php?page=eventsByLocation&location=${location}`, {
+      fetch(`index.php?page=programma&locations=${locations}`, {
         headers: new Headers({
           Accept: `application/json`
         })
       })
       .then(r => r.json())
-      .then(results => {
-        showEvents(results);
+      .then(events => {
+        showEvents(events, locations);
       });
     });
   });
 };
 
-const showEvents = results => {
-  results.forEach(result => {
-    console.log(result);
+// `index.php?page=eventsByLocation&location=${location}`
+
+const showEvents = (events, locations) => {
+  const allEvents = document.querySelectorAll(`.event`);
+//  const currentLocation = document.querySelectorAll(`.${locations}`);
+  allEvents.forEach(event => {
+    event.style.display = ``;
+    if (!event.classList.contains(`${locations}`)) {
+      event.style.display = `none`;
+    }
   });
 };
 
@@ -131,6 +142,10 @@ const dropdownHandler = e => {
   const dropdown = e.currentTarget;
   const zones = document.querySelector(`.zones`);
   if (zones.style.visibility === `visible`) {
+    const allEvents = document.querySelectorAll(`.event`);
+    allEvents.forEach(event => {
+      event.style.display = ``;
+    });
     zones.style.visibility = `hidden`;
     zones.style.transform = `translateY(-152.2rem)`;
     dropdown.style.transform = `translateY(12rem) rotate(0deg)`;
@@ -141,6 +156,7 @@ const dropdownHandler = e => {
     document.querySelector(`.events__month`).style.width = `85vw`;
     document.querySelector(`.events__month`).style.marginTop = `0`;
     currentMonth.innerHTML = `${monthArray[0]}`;
+    currentMonth.style.display = ``;
     currentMonth.style.marginLeft = `0`;
     currentMonth.style.fontSize = `5rem`;
     currentMonth.style.fontFamily = `HereJustNow`;
@@ -154,7 +170,7 @@ const dropdownHandler = e => {
     document.querySelector(`.regulars`).style.display = `none`;
     document.querySelector(`.events__month`).style.display = `none`;
     document.querySelector(`.events__month`).style.marginLeft = `50rem`;
-    document.querySelector(`.events__month`).style.width = `50vw`;
+    document.querySelector(`.events__month`).style.width = `65vw`;
     document.querySelector(`.events__month`).style.marginTop = `-20rem`;
     currentMonth.innerHTML = `Selecteer een zone`;
     currentMonth.style.marginLeft = `30rem`;

@@ -20,12 +20,12 @@ $routes = array(
   'detail' => array(
     'controller' => 'Events',
     'action' => 'detail'
-  )
+  ),
 
-  /*'eventsByLocation' => array(
+  'eventsByLocation' => array(
      'controller' => 'Events',
      'action' => '_getEventsByLocation'
-   )*/
+   )
 );
 
 if(empty($_GET['page'])) {
