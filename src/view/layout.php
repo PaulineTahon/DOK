@@ -5,8 +5,8 @@
 
       WebFontConfig = {
         custom: {
-          families: ['HereJustNow', 'HereJustNow-Out'],
-          urls: ['assets/fonts/HereJustNow/HereJustNow.css', 'assets/fonts/HereJustNow-Out/HereJustNow-Out.css']
+          families: ['herejustnow', 'herejustnowout'],
+          urls: ['assets/fonts/herejustnow/herejustnow.css', 'assets/fonts/herejustnowout/herejustnowout.css']
         }
       };
 

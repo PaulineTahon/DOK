@@ -51,6 +51,7 @@ class Controller {
     require WWW_ROOT . 'view' . DS . strtolower($this->route['controller']) . DS . $this->route['action'] . '.php';
     $content = ob_get_clean();
     $this->set('content', $content);
+    $this->set('js', $js);
   }
 
   private function renderInLayout() {

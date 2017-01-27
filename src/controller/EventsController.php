@@ -37,7 +37,7 @@ class EventsController extends Controller {
   public function programma() {
     $conditions = array();
 
-    //  $locations = $_GET["locations"];
+    $locations = $_GET["locations"];
 
     // $conditions[0] = array(
     //   'field' => 'end',

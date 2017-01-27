@@ -91,7 +91,7 @@ body {
     align-items: flex-end;
 
     &__edition {
-      font-family: HereJustNow-Out;
+      font-family: herejustnowout;
       font-size: 11rem;
     }
   }
@@ -113,7 +113,7 @@ body {
   }
 
   &__date {
-    font-family: HereJustNow-Out;
+    font-family: herejustnowout;
     font-size: 4.5rem;
     text-transform: uppercase;
   }
@@ -192,7 +192,7 @@ body {
     flex: 2;
 
     &__title {
-      font-family: HereJustNow;
+      font-family: herejustnow;
       font-size: 3.7rem;
       text-transform: uppercase;
     }
@@ -229,7 +229,7 @@ body {
   }
 
   &__start-event__title {
-    font-family: HereJustNow;
+    font-family: herejustnow;
     font-size: 5rem;
     text-transform: uppercase;
   }
@@ -305,7 +305,7 @@ body {
   }
 
   &__start {
-    font-family: HereJustNow;
+    font-family: herejustnow;
     font-size: 2.7rem;
 
     &__detail {
@@ -345,7 +345,7 @@ body {
   &__title {
     display: flex;
     align-items: flex-end;
-    font-family: HereJustNow-Out;
+    font-family: herejustnowout;
     font-size: 4.4rem;
     text-transform: uppercase;
   }
@@ -378,7 +378,7 @@ body {
   }
 
   &__title {
-    font-family: HereJustNow;
+    font-family: herejustnow;
     font-size: 3.5rem;
     text-transform: uppercase;
   }
@@ -456,8 +456,8 @@ body {
   z-index: 1000;
 }
 
-.zone {
-  padding: 2rem 3rem;
+.submit {
+  padding: 1rem 1.5rem;
   transition: .2s ease;
   outline: none;
 
@@ -488,7 +488,7 @@ body {
     position: relative;
     top: 7rem;
     left: -40rem;
-    font-family: HereJustNow-Out;
+    font-family: herejustnowout;
     text-transform: uppercase;
     font-size: 4rem;
   }
@@ -567,7 +567,6 @@ body {
 
   &__month {
     display: flex;
-    justify-content: center;
     width: 85vw;
     flex-wrap: wrap;
     margin-top: 1rem;
@@ -691,13 +690,13 @@ body {
   margin-top: 3rem;
 
   &__title {
-    font-family: HereJustNow;
+    font-family: herejustnow;
     font-size: 3rem;
   }
 
   &__specifics {
     text-transform: uppercase;
-    font-family: HereJustNow;
+    font-family: herejustnow;
     font-size: 2.5rem;
     padding-top: 3rem;
 
