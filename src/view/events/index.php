@@ -2,7 +2,7 @@
     <header class="header">
       <nav>
         <ul class="header-menu">
-          <li class="header-menu__item"><a href="index.php"><img src="assets/svg/dok-logo.svg" alt="home" width="80" height="40"></a></li>
+          <li class="header-menu__item"><a href="index.php"><img src="assets/svg/dok-logo.svg" alt="home" width="60" height="40"></a></li>
           <li><a class="header-menu__item" href="index.php?page=programma">programma</a></li>
           <li><a class="header-menu__item" href="#">over dok</a></li>
           <li><a class="header-menu__item" href="#">zones</a></li>
@@ -22,8 +22,8 @@
           <article class="header-text__specifics">
             <h2 class="header-text__date">01/05 <br />tot <br />25/09</h2>
             <div class="header-text__block">
-              <a class="header-text__social-icons__icon" href="https://www.facebook.com/DOKgent/?fref=ts" target="_blank"><img src="assets/svg/facebook.svg" alt="Facebook" width="50" height="50"/></a>
-              <a class="header-text__social-icons__icon" href="https://twitter.com/dokgent" target="_blank"><img src="assets/svg/instagram.svg" alt="Instagram" width="50" height="50"/></a>
+              <a class="header-text__social-icons__icon" href="https://www.facebook.com/DOKgent/?fref=ts" target="_blank"><img src="assets/svg/facebook.svg" alt="Facebook" width="45" height="45"/></a>
+              <a class="header-text__social-icons__icon" href="https://twitter.com/dokgent" target="_blank"><img src="assets/svg/instagram.svg" alt="Instagram" width="45" height="45"/></a>
             </div>
           </article>
         </div>
@@ -42,7 +42,7 @@
             <h2 class="article__intro__title">ontdek <br />ontspan <br />ontplooi</h2>
             <p class="article__desc article__intro__desc">Het DOKseizoen is bijna aangebroken! <br />Dan transformeren we het werf weer tot een ontmoetingsplek, een plaats voor creatie en nieuwe initiatieven. Zorg dat je er bij bent!</p>
           </div>
-          <img class="article__img article__intro__img" src="assets/svg/intro-bg.svg" alt="strandstoel" width="500" height="400"/>
+          <img class="article__img article__intro__img" src="assets/svg/intro-bg.svg" alt="strandstoel" width="400" height="300"/>
         </article>
         <article class="article article__newsletter">
           <header class="hidden">
@@ -56,7 +56,7 @@
               <button class="article__button" id="submit" type="submit" name="action" value="SCHRIJF ME IN!">SCHRIJF ME IN!</button>
             </form>
           </div>
-          <img class="article__img article__newsletter__img"src="assets/svg/nieuwsbrief-bg.svg" alt="letterbox" width="450" height="350"/>
+          <img class="article__img article__newsletter__img"src="assets/svg/nieuwsbrief-bg.svg" alt="letterbox" width="350" height="250"/>
         </article>
       </section>
       <section class="section section__second">
@@ -81,10 +81,10 @@
                       <p class="event__start article__desc"><?php echo $event['start'];?></p>
                       <p class="date__separator hidden">-</p>
                       <p class="event__end hidden"><?php echo $event['end']; ?></p>
-                      <img src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="100" height="100"/>
+                      <img class="event__img" src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="80" height="80"/>
                     </div>
                     <div class="event__specifics">
-                      <header class="article__title"><h2><?php echo $event['title']; ?></h2></header>
+                      <header class="event__title"><h2><?php echo $event['title']; ?></h2></header>
                       <div class="event__time">
                         <p class="event__starttime article__desc"><?php echo $event['start'];?></p>
                         <p class="time__separator">-</p>
@@ -108,7 +108,7 @@
             <p class="article__desc">Dan hebben we goed nieuws! Ons programma is reeds gevuld met verschillende activiteiten. Vergeet niet af en toe terug een kijkje te komen nemen, nieuwe evenementen schieten als wortels uit de grond!</p>
             <button class="article__button" href="#">bekijk het programma</button><br />
           </div>
-          <img class="article__img article__programme__img" src="assets/svg/programma-bg.svg" alt="programma" width="450" height="350"/>
+          <img class="article__img article__programme__img" src="assets/svg/programma-bg.svg" alt="programma" width="350" height="250"/>
         </article>
         <article class="article article__dokbewoner">
           <div>
@@ -116,7 +116,7 @@
             <p class="article__desc">Sluit je ogen, verbeeld je DOK 2017… Ziet het er ongelofelijk fantastisch uit? <br />Naar goede gewoonte zijn we op zoek naar nieuwe DOKbewoners om een frisse wind te laten waaien op de site! Stuur ons dus jouw idee op en misschoen sta je dit seizoen wel als DOKbewoner te schitteren!</p>
             <button class="article__button" href="#">word dokbewoner!</button><br />
           </div>
-          <img class="article__img article__dokbewoner__img" src="assets/svg/dokbewoner-bg.svg" alt="dokbewoner" width="500" height="400"/>
+          <img class="article__img article__dokbewoner__img" src="assets/svg/dokbewoner-bg.svg" alt="dokbewoner" width="400" height="300"/>
         </article>
       </section>
     </main>

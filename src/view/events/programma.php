@@ -2,7 +2,7 @@
     <header class="page">
       <nav>
         <ul class="header-menu">
-          <li class="header-menu__item"><a href="index.php"><img src="assets/svg/dok-logo.svg" alt="home" width="80" height="40"></a></li>
+          <li class="header-menu__item"><a href="index.php"><img src="assets/svg/dok-logo.svg" alt="home" width="60" height="40"></a></li>
           <li><a class="header-menu__item active" href="index.php?page=programma">programma</a></li>
           <li><a class="header-menu__item" href="#">over dok</a></li>
           <li><a class="header-menu__item" href="#">zones</a></li>
@@ -12,7 +12,7 @@
       </nav>
       <section class="page__header">
         <article class="page__title">
-          <img src="assets/svg/dok-logo.svg" alt="DOK logo" width="120" height="60"/>
+          <img src="assets/svg/dok-logo.svg" alt="DOK logo" width="100" height="52"/>
           <h1 class="page__title__text">Programma</h1>
         </article>
         <p class="page__desc">Het DOKseizoen is nog niet begonnen, maar wij zijn al volop aan het plannen om er een onvergetelijke editie van te maken! Filter het DOKprogramma of browse naar hartelust om te zien wat je te wachten staat!</p>
@@ -25,33 +25,33 @@
             <p class="selector__desc">DOK heeft voor elk wat wils. Het telt 6 zones waar telkens iets anders te beleven valt. Ontdek ze hier!</p>
             <div class="dropdown">
               <div class="zones">
-                <form class="form" action="index.php?page=programma" class="zone zone__terras">
+                <form class="form" method="post" action="index.php?page=programma" class="zone zone__terras">
                   <input class="data" type="hidden" type="text" name="location" value="terras">
-                  <input class="submit" type="image" name="submit" src="assets/svg/dokterras.svg" alt="DOK terras" width="400" height="200"/>
-                </form class="form" action="index.php?page=programma">
-                <form class="form" action="index.php?page=programma" class="zone zone__strand">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokterras.svg" alt="DOK terras" width="300" height="200"/>
+                </form>
+                <form class="form" method="post" action="index.php?page=programma" class="zone zone__strand">
                   <input class="data" type="hidden" type="text" name="location" value="strand">
-                  <input class="submit" type="image" name="submit" src="assets/svg/dokstrand.svg" alt="DOK strand" width="400" height="200"/>
-                </form class="form" action="index.php?page=programma">
-                <form class="form" action="index.php?page=programma" class="zone zone__voortuin">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokstrand.svg" alt="DOK strand" width="300" height="200"/>
+                </form>
+                <form class="form" method="post" action="index.php?page=programma" class="zone zone__voortuin">
                   <input class="data" type="hidden" type="text" name="location" value="voortuin">
-                  <input class="submit" type="image" name="submit" src="assets/svg/dokvoortuin.svg" alt="DOK voortuin" width="400" height="200"/>
-                </form class="form" action="index.php?page=programma">
-                <form class="form" action="index.php?page=programma" class="zone zone__kantine">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokvoortuin.svg" alt="DOK voortuin" width="300" height="200"/>
+                </form>
+                <form class="form" method="post" action="index.php?page=programma" class="zone zone__kantine">
                   <input class="data" type="hidden" type="text" name="location" value="kantine">
-                  <input class="submit" type="image" name="submit" src="assets/svg/dokkantine.svg" alt="DOK kantine" width="400" height="200"/>
-                </form class="form" action="index.php?page=programma">
-                <form class="form" action="index.php?page=programma" class="zone zone__box">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokkantine.svg" alt="DOK kantine" width="300" height="200"/>
+                </form>
+                <form class="form" method="post" action="index.php?page=programma" class="zone zone__box">
                   <input class="data" type="hidden" type="text" name="location" value="box">
-                  <input class="submit" type="image" name="submit" src="assets/svg/dokbox.svg" alt="DOK box" width="400" height="280"/>
-                </form class="form" action="index.php?page=programma">
-                <form class="form" action="index.php?page=programma" class="zone zone__markt">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokbox.svg" alt="DOK box" width="300" height="280"/>
+                </form>
+                <form class="form" method="post" action="index.php?page=programma" class="zone zone__markt">
                   <input class="data" type="hidden" type="text" name="location" value="markt">
-                  <input class="submit" type="image" name="submit" src="assets/svg/dokmarkt.svg" alt="DOK markt" width="400" height="200"/>
-                </form class="form" action="index.php?page=programma">
+                  <input class="submit" type="image" name="submit" src="assets/svg/dokmarkt.svg" alt="DOK markt" width="300" height="200"/>
+                </form>
               </div>
             </div>
-            <img class="dropdown-arrow" src="assets/svg/dropdown-arrow.svg" alt="dropdown arrow" width="50" height="50"/>
+            <img class="dropdown-arrow" src="assets/svg/dropdown-arrow.svg" alt="dropdown arrow" width="40" height="40"/>
           </article>
           <article class="selector selector__tags">
             <h1 class="selector__title">tags</h1>
@@ -100,7 +100,7 @@
             <h3 class="regular__event">Koffie, taart &amp; gazetten</h3>
             <p class="regular__time">10:00 - 19:00</p>
           </div>
-          <img class="regular__img" src="assets/svg/koffie-vast.svg" alt="koffie - vaste waarden" width="500" height="300"/>
+          <img class="regular__img" src="assets/svg/koffie-vast.svg" alt="koffie - vaste waarden" width="450" height="250"/>
         </article>
         <article class="regular regular__markt">
           <div class="regular__text">
@@ -108,7 +108,7 @@
             <h3 class="regular__event">Dok(rommel)markt</h3>
             <p class="regular__time">10:00 - 19:00</p>
           </div>
-          <img class="regular__img" src="assets/svg/markt-vast.svg" alt="(rommel)markt - vaste waarden" width="500" height="380"/>
+          <img class="regular__img" src="assets/svg/markt-vast.svg" alt="(rommel)markt - vaste waarden" width="450" height="330"/>
         </article>
         <article class="regular regular__cosy">
           <header class="hidden">
@@ -119,7 +119,7 @@
             <h3 class="regular__event">Gezellige dj - cosy cozy</h3>
             <p class="regular__time">14:00 - 19:00</p>
           </div>
-          <img class="regular__img" src="assets/svg/cosy-vast.svg" alt="Dj cosy cozy - vaste waarden" width="500" height="300"/>
+          <img class="regular__img" src="assets/svg/cosy-vast.svg" alt="Dj cosy cozy - vaste waarden" width="440" height="250"/>
         </article>
       </section>
       <section class="events">
@@ -135,10 +135,10 @@
                   <p class="event__start article__desc"><?php echo $event['start'];?></p>
                   <p class="date__separator hidden">-</p>
                   <p class="event__end article__desc hidden"><?php echo $event['start'];?></p>
-                  <img src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="100" height="100"/>
+                  <img class="event__img" src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="80" height="80"/>
                 </div>
                 <div class="event__specifics">
-                  <header class="article__title"><h2><?php echo $event['title']; ?></h2></header>
+                  <header class="event__title"><h2><?php echo $event['title']; ?></h2></header>
                   <div class="event__time">
                     <p class="event__starttime article__desc"><?php echo $event['start'];?></p>
                     <p class="time__separator">-</p>

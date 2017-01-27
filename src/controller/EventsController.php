@@ -104,22 +104,28 @@ class EventsController extends Controller {
     }
   }
 
-  public function getEventsByLocation () {
-    $location = $_GET["location"];
+  public function _getEventsByLocation () {
+    if(!empty($_GET['location'])) {
+      $location = $_GET['location'];
+      var_dump($location);
 
-    $conditions[0] = array(
-      'field' => 'location',
-      'comparator' => 'like',
-      'value' => $location
-    );
+      $conditions[0] = array(
+        'field' => 'location',
+        'comparator' => 'like',
+        'value' => $location
+      );
 
-    $events = $this->eventDAO->search($conditions);
-    if($this->isAjax) {
+      if($results = $events = $this->eventDAO->search($conditions)) {
+        if($this->isAjax) {
           header('Content-Type: application/json');
           echo json_encode($events);
           exit();
         }
-    $this->set('events', $events);
+        $this->redirect('index.php');
+      }
+      $this->set('events', $events);
+      var_dump($events);
+    }
   }
 
   public function detail () {

@@ -2,36 +2,42 @@ import es6Promise from 'es6-promise';
 import fetch from 'isomorphic-fetch';
 es6Promise.polyfill();
 
-const $form = document.forms[0];
+//const $form = document.forms[0];
 const monthArray = [`mei`, `juni`, `juli`, `augustus`, `september`],
   currentMonth = document.querySelector(`.article__start-event__title`),
-  submits = document.querySelectorAll(`form`);
-  // submitbutton = document.querySelectorAll(`submit`),
+  submitForms = document.querySelectorAll(`.form`);
+  //submits = document.querySelectorAll(`submit`);
   // dataInput = document.querySelectorAll(`data`);
 
 let index = 0;
-  // location;
+   //location;
 
 const init = () => {
 
-  addsubmitForm();
-  checkIfSecondImg();
+  addSubmitForm();
+//  checkIfSecondImg();
   getDatetimeSubstings();
 
   document.querySelector(`.dropdown-arrow`).addEventListener(`click`, dropdownHandler);
   getMonth(currentMonth);
 
-  $form.noValidate = true;
-  $form.addEventListener(`submit`, onFormSubmit);
-  document.getElementsByName(`email`)[0].addEventListener(`input`, onEmailChange);
-  document.getElementsByName(`email`)[0].addEventListener(`blur`, onEmailChange);
+  //$form.noValidate = true;
+  //$form.addEventListener(`submit`, onFormSubmit);
+  // document.getElementsByName(`email`)[0].addEventListener(`input`, onEmailChange);
+  // document.getElementsByName(`email`)[0].addEventListener(`blur`, onEmailChange);
 };
 
-const addsubmitForm = () => {
-  submits.forEach(submit => {
-  //  submit.addEventListener(`click`, clearEvents);
-    submit.addEventListener(`click`, () => {
-      fetch(`index.php?=${Date.now()}`, {
+const addSubmitForm = () => {
+  console.log(submitForms);
+  submitForms.forEach(form => {
+  //  const submit = form.querySelector(`.submit`);
+    console.log(form);
+    form.addEventListener(`submit`, e => {
+      e.preventDefault();
+      const location = form.querySelector(`.data`).value;
+      console.log(`click`);
+      document.querySelector(`.events__month`).style.display = ``;
+      fetch(`index.php?page=eventsByLocation&location=${location}`, {
         headers: new Headers({
           Accept: `application/json`
         })
@@ -59,14 +65,14 @@ const checkIfSecondImg = () => {
   }
 };
 
-const onFormSubmit = event => {
-  event.preventDefault();
-  if (!$form.checkValidity()) {
-    checkEmail(document.getElementById(`email`));
-  } else {
-    document.getElementById(`email`).value;
-  }
-};
+// const onFormSubmit = event => {
+//   event.preventDefault();
+//   if (!$form.checkValidity()) {
+//     checkEmail(document.getElementById(`email`));
+//   } else {
+//     document.getElementById(`email`).value;
+//   }
+// };
 
 const onEmailChange = e => {
   const $veld = e.currentTarget;
@@ -115,7 +121,7 @@ const getDatetimeSubstings = () => {
     endTimes[i].innerHTML = `${endTimes[i].innerHTML.substring(16, 11)}`;
   }
 
-  if (document.querySelector(`.article__title`).innerHTML === `BLANCO, ELIZABETH VAN DAM ‘IN LOVE’`) {
+  if (document.querySelector(`.event__title`).innerHTML === `BLANCO, ELIZABETH VAN DAM ‘IN LOVE’`) {
     document.querySelector(`.event__end`).classList.remove(`hidden`);
     document.querySelector(`.date__separator`).classList.remove(`hidden`);
   }
@@ -131,8 +137,8 @@ const dropdownHandler = e => {
     document.querySelector(`.events__month`).style.display = ``;
     document.querySelector(`.regulars`).style.display = ``;
     document.querySelector(`.events__month`).style.marginTop = `1rem`;
-    document.querySelector(`.events__month`).style.marginLeft = `5rem`;
-    document.querySelector(`.events__month`).style.width = `75vw`;
+    document.querySelector(`.events__month`).style.marginLeft = `0`;
+    document.querySelector(`.events__month`).style.width = `85vw`;
     document.querySelector(`.events__month`).style.marginTop = `0`;
     currentMonth.innerHTML = `${monthArray[0]}`;
     currentMonth.style.marginLeft = `0`;
@@ -144,15 +150,15 @@ const dropdownHandler = e => {
   } else {
     zones.style.visibility = `visible`;
     zones.style.transform = `translateY(0)`;
-    dropdown.style.transform = `rotate(-180deg) translateY(-88rem)`;
+    dropdown.style.transform = `rotate(-180deg) translateY(-70rem)`;
     document.querySelector(`.regulars`).style.display = `none`;
     document.querySelector(`.events__month`).style.display = `none`;
     document.querySelector(`.events__month`).style.marginLeft = `50rem`;
     document.querySelector(`.events__month`).style.width = `50vw`;
     document.querySelector(`.events__month`).style.marginTop = `-20rem`;
     currentMonth.innerHTML = `Selecteer een zone`;
-    currentMonth.style.marginLeft = `80rem`;
-    currentMonth.style.fontSize = `2.5rem`;
+    currentMonth.style.marginLeft = `30rem`;
+    currentMonth.style.fontSize = `2rem`;
     currentMonth.style.fontFamily = `arial`;
     currentMonth.style.fontWeight = `bold`;
 

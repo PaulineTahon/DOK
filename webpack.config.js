@@ -8,6 +8,7 @@ const config = {
   entry: {
     style: `./src/css/style.css`,
     script: `./src/js/script.js`,
+    programma: `./src/js/programma.js`
   },
   output: {
     path: path.resolve(`./dist`),

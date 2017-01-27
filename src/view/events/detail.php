@@ -57,7 +57,7 @@
       <img class="image image__2" src="assets/img/<?php echo $event['img_name']; ?>2.jpg" alt="<?php $locationstr = $location['name']; $locationstr = strtolower($locationstr); echo $locationstr;?>" width="320" height="auto"/>
     </article>
     <?php foreach($event['locations'] as $location): ?>
-      <img class="image location__svg" src="assets/svg/<?php $locationstr = $location['name']; $locationstr = strtolower($locationstr); echo $locationstr;?>.svg" alt="<?php $locationstr = $location['name']; $locationstr = strtolower($locationstr); echo $locationstr;?>" width="400" height="auto"/>
+      <img class="image location__svg" src="assets/svg/<?php $locationstr = $location['name']; $locationstr = strtolower($locationstr); echo $locationstr;?>.svg" alt="<?php $locationstr = $location['name']; $locationstr = strtolower($locationstr); echo $locationstr;?>" width="300" height="auto"/>
     <?php endforeach;?>
   </section>
 <? endforeach;?>

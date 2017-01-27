@@ -36,7 +36,7 @@ body {
 
   0% { transform: translateX(0); }
 
-  50% { transform: translateX(-110rem); }
+  50% { transform: translateX(-100rem); }
 
   100% { transform: translateX(0); }
 }
@@ -58,7 +58,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-transform: uppercase;
   font-weight: bold;
   padding-right: 20rem;
@@ -67,24 +67,24 @@ body {
     text-decoration: none;
     color: black;
     transition: .2s ease;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
 
     &:first-child a {
       padding-right: 10rem;
     }
 
     &:hover {
-      color: var(--active-tab);
+      color: var(--zone-kantine);
     }
   }
 }
 
 .active {
-  color: var(--active-tab);
+  color: var(--zone-kantine);
 }
 
 .header-text {
-  padding-top: 3rem;
+  padding: 3rem 2rem;
 
   &__title {
     display: flex;
@@ -102,19 +102,19 @@ body {
   }
 
   &__slogan {
-    font-size: 1.75rem;
+    font-size: 1.65rem;
     text-transform: uppercase;
     font-weight: bold;
   }
 
   &__specifics {
     align-self: flex-end;
-    width: 40rem;
+    width: 30rem;
   }
 
   &__date {
     font-family: HereJustNow-Out;
-    font-size: 5rem;
+    font-size: 4.5rem;
     text-transform: uppercase;
   }
 
@@ -126,7 +126,7 @@ body {
 
 .header-img {
   position: relative;
-  top: -19rem;
+  top: -18rem;
   left: center;
   width: 90vw;
   height: 80vh;
@@ -142,15 +142,15 @@ body {
   z-index: -1;
 
   &__left {
-    top: -100vh;
+    top: -104vh;
     left: 16vw;
-    animation: moveRight 40s linear infinite;
+    animation: moveRight 50s linear infinite;
   }
 
   &__right {
-    top: -88.2vh;
+    top: -92.2vh;
     left: 70vw;
-    animation: moveLeft 40s linear infinite;
+    animation: moveLeft 50s linear infinite;
   }
 }
 
@@ -160,7 +160,7 @@ body {
   padding: 0 10rem;
 
   &__first {
-    margin-top: 15rem;
+    margin-top: 12rem;
   }
 
   &__second {
@@ -177,15 +177,15 @@ body {
 
   &__desc {
     padding-top: 1rem;
-    font-size: 2.2rem;
-    line-height: 2.6rem;
+    font-size: 1.6rem;
+    line-height: 2rem;
   }
 
   &__title {
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 2.2rem;
-    line-height: 2.8rem;
+    font-size: 2rem;
+    line-height: 2.6rem;
   }
 
   &__intro {
@@ -193,7 +193,7 @@ body {
 
     &__title {
       font-family: HereJustNow;
-      font-size: 4rem;
+      font-size: 3.7rem;
       text-transform: uppercase;
     }
 
@@ -216,10 +216,11 @@ body {
 
   &__newsletter {
     flex: 1;
+    padding-top: 1.5rem;
 
     &__img {
-      left: -31rem;
-      top: -20rem;
+      left: -25rem;
+      top: -16rem;
     }
   }
 
@@ -242,7 +243,6 @@ body {
 .newsletter {
   display: flex;
   flex-flow: column;
-  padding-top: 1.5rem;
 
   &__input {
     @apply --button-style;
@@ -272,13 +272,22 @@ body {
 
 .event {
   display: flex;
-  width: 50%;
+  width: 30%;
 
   &__info {
     display: flex;
     align-items: flex-start;
     text-decoration: none;
     color: black;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+
+  &__img {
+    margin-top: 1rem;
   }
 
   &__specifics {
@@ -297,7 +306,7 @@ body {
 
   &__start {
     font-family: HereJustNow;
-    font-size: 3rem;
+    font-size: 2.7rem;
 
     &__detail {
       font-family: arial;
@@ -337,7 +346,7 @@ body {
     display: flex;
     align-items: flex-end;
     font-family: HereJustNow-Out;
-    font-size: 5.2rem;
+    font-size: 4.4rem;
     text-transform: uppercase;
   }
 
@@ -345,7 +354,7 @@ body {
     line-height: 2.6rem;
     margin-top: 1rem;
     width: 50vw;
-    font-size: 2.2rem;
+    font-size: 1.9rem;
   }
 }
 
@@ -354,7 +363,7 @@ body {
   justify-content: space-around;
   flex-wrap: wrap;
   margin-top: 5.6rem;
-  line-height: 2.6rem;
+  line-height: 2.2rem;
 }
 
 .selector {
@@ -364,13 +373,13 @@ body {
 
   &__desc {
     width: 28vw;
-    font-size: 2.2rem;
+    font-size: 1.7rem;
     margin-top: 1.5rem;
   }
 
   &__title {
     font-family: HereJustNow;
-    font-size: 4rem;
+    font-size: 3.5rem;
     text-transform: uppercase;
   }
 
@@ -382,8 +391,8 @@ body {
     background: transparent;
     appearance: none;
     border: none;
-    font-size: 1.8rem;
-    padding-top: .1rem;
+    font-size: 1.6rem;
+    padding-top: .5rem;
     padding-right: 5rem;
     z-index: 99;
     outline: none;
@@ -395,7 +404,7 @@ body {
     padding-left: 3rem;
     padding-right: 2rem;
     background: white;
-    background-size: 3rem;
+    height: 4rem;
     display: flex;
     align-items: flex-end;
   }
@@ -422,11 +431,12 @@ body {
   flex-flow: column;
   align-items: center;
   position: absolute;
-  margin-top: 12rem;
+  margin-top: 10rem;
 
   &-arrow {
     margin-top: -9rem;
-    transform: translateY(12rem);
+    margin-bottom: 2rem;
+    transform: translateY(11rem);
     transition: .3s ease;
     visibility: visible;
   }
@@ -477,7 +487,7 @@ body {
   &__vast {
     position: relative;
     top: 7rem;
-    left: -55rem;
+    left: -40rem;
     font-family: HereJustNow-Out;
     text-transform: uppercase;
     font-size: 4rem;
@@ -498,22 +508,18 @@ body {
   }
 
   &__event {
-    font-size: 2rem;
+    font-size: 1.8rem;
     padding: .7rem 0;
-
-    &:hover {
-      background-color: var(--active-tab);
-    }
   }
 
   &__day {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: bold;
     text-transform: uppercase;
   }
 
   &__time {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   &__img {
@@ -527,7 +533,7 @@ body {
 
   &__markt {
     align-self: flex-end;
-    top: 5rem;
+    top: 2rem;
     left: -3rem;
 
     & .regular__text {
@@ -536,49 +542,49 @@ body {
   }
 
   &__koffie {
-    left: -40rem;
+    left: -32rem;
 
     & .regular__text {
-      top: -6rem;
+      top: -5rem;
       left: -6rem;
     }
   }
 
   &__cosy {
-    left: 15rem;
+    left: 12rem;
 
     & .regular__text {
-      top: -7rem;
-      left: -12rem;
+      top: -6rem;
+      left: -13rem;
     }
   }
 }
 
 .events {
-  padding-top: 27rem;
+  padding-top: 25rem;
   display: flex;
+  justify-content: center;
 
   &__month {
     display: flex;
     justify-content: center;
-    width: 90vw;
+    width: 85vw;
     flex-wrap: wrap;
-    margin-left: 5rem;
     margin-top: 1rem;
     padding-bottom: 5rem;
 
     &__event {
-      width: 42rem;
-      height: 13.6rem;
-      margin: 1rem 3rem;
+      width: 35rem;
+      height: 12rem;
+      margin: 1rem 2rem;
       background-color: white;
       transition: .3s ease;
     }
   }
 
   &__event {
-    width: 42rem;
-    height: 13.7rem;
+    width: 35rem;
+    height: 12rem;
     margin: 1rem 3rem;
     background-color: white;
     transition: .3s ease;
@@ -681,18 +687,18 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-around;
   margin-top: 3rem;
 
   &__title {
     font-family: HereJustNow;
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
 
   &__specifics {
     text-transform: uppercase;
     font-family: HereJustNow;
-    font-size: 3rem;
+    font-size: 2.5rem;
     padding-top: 3rem;
 
     &__content {
@@ -709,8 +715,8 @@ body {
 
     &__desc {
       width: 40vw;
-      line-height: 2.4rem;
-      font-size: 2rem;
+      line-height: 2rem;
+      font-size: 1.6rem;
       padding-top: 4rem;
     }
 
@@ -733,8 +739,7 @@ body {
   &__img {
     margin-top: 10rem;
     display: flex;
-    width: 45vw;
-    height: 50vh;
+    flex: 2;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -746,19 +751,17 @@ body {
 }
 
 .clip__1 {
-  width: 45rem;
+  transform: scale(.8);
+  width: 30rem;
   clip-path: url(#clippath__1);
+  position: relative;
+  left: -5rem;
 }
 
 .clip__2 {
+  transform: scale(.7);
   margin-left: 2rem;
-  width: 32rem;
   clip-path: url(#clippath__2);
-}
-
-.location__svg {
-  width: 40rem;
-  padding-top: 2rem;
 }
 
 @media (width <= 1315px) {

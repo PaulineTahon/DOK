@@ -142,7 +142,7 @@ class EventDAO extends DAO {
     $errors = $this->validateCreateData( $data );
 
     if(empty($errors)) {
-      $sql = "INSERT INTO `ma3_dok_newsletter`(`email`) VALUES(:email)";
+      $sql = "INSERT INTO `ma3_dok_newsletter`(`email`) VALUES (:email)";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':email', $data["email"]);
       if($stmt->execute()){
@@ -152,7 +152,6 @@ class EventDAO extends DAO {
   }
 
   public function validateCreateData( $data ){
-
     $errors = [];
 
     if( !isset($data["email"]) || empty( $data["email"]) ){
