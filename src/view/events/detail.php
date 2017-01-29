@@ -14,7 +14,7 @@
 <?php foreach($events as $event): ?>
   <section class="detail__info">
     <header>
-      <h1 class="detail__title article__title"><?php echo $event['title']; ?></h1>
+      <h1 class="detail__title event__title article__title"><?php echo $event['title']; ?></h1>
     </header>
     <section class="detail__info__basic">
       <section>

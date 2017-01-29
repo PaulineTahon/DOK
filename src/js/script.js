@@ -2,20 +2,31 @@ import es6Promise from 'es6-promise';
 import fetch from 'isomorphic-fetch';
 es6Promise.polyfill();
 
-const monthArray = [`mei`, `juni`, `juli`, `augustus`, `september`],
-  currentMonth = document.querySelector(`.article__start-event__title`),
-  submitForms = document.querySelectorAll(`.form`);
+const monthArray = [`januari`, `februari`, `maart`, `april`, `mei`, `juni`, `juli`, `augustus`, `september`],
+  headerMonth = document.querySelector(`.article__start-event__title`),
+  currentMonth = document.querySelector(`.events__header`),
+  submitForms = document.querySelectorAll(`.form`),
+  tagFilter = document.querySelector(`.tags__form`),
+  zones = document.querySelector(`.zones`),
+  dropdown = document.querySelector(`.dropdown-arrow`),
+  allEvents = document.querySelectorAll(`.event`),
+  next = document.querySelector(`.next`),
+  previous = document.querySelector(`.previous`),
+  monthEvents = document.querySelector(`.events__month`),
+  regulars = document.querySelector(`.regulars`);
 
-let index = 0,
-  $form;
+let index = 4,
+  itemAddForm;
 
 
 const init = () => {
 
   if (document.querySelector(`.newsletter`)) {
-    $form = document.forms[0];
-    $form.noValidate = true;
-    $form.addEventListener(`submit`, onFormSubmit);
+    itemAddForm = document.forms[0];
+    itemAddForm.noValidate = true;
+    itemAddForm.addEventListener(`submit`, onFormSubmit);
+    document.getElementsByName(`email`)[0].addEventListener(`input`, onEmailChange);
+    document.getElementsByName(`email`)[0].addEventListener(`blur`, onEmailChange);
   }
 
   addSubmitForm();
@@ -24,11 +35,44 @@ const init = () => {
 
   if (document.querySelector(`.dropdown-arrow`)) {
     document.querySelector(`.dropdown-arrow`).addEventListener(`click`, dropdownHandler);
+    checkIfTag();
+    getMonth();
   }
-  getMonth(currentMonth);
+};
 
-  document.getElementsByName(`email`)[0].addEventListener(`input`, onEmailChange);
-  document.getElementsByName(`email`)[0].addEventListener(`blur`, onEmailChange);
+const checkIfTag = () => {
+  tagFilter.addEventListener(`change`, e => {
+    e.preventDefault();
+    if (zones.style.visibility === `visible`) {
+      closeDropDown();
+    }
+
+    if (regulars !== `none`) {
+      regulars.style.display = `none`;
+      document.querySelector(`.article__start-event__title`).style.display = `none`;
+      next.style.display = `none`;
+      previous.style.display = `none`;
+      monthEvents.style.marginTop = `-20rem`;
+    }
+    const items = tagFilter.querySelector(`.tags`).value;
+    console.log(items);
+    if (items === ` `) {
+      closeDropDown();
+      headerMonth.style.display = ``;
+      next.style.display = ``;
+      previous.style.display = ``;
+    }
+
+    fetch(`index.php?page=programma&locations=${items}`, {
+      headers: new Headers({
+        Accept: `application/json`
+      })
+    })
+    .then(r => r.json())
+    .then(events => {
+      showEvents(events, items);
+    });
+  });
 };
 
 const addSubmitForm = () => {
@@ -37,34 +81,35 @@ const addSubmitForm = () => {
     console.log(form);
     form.addEventListener(`submit`, e => {
       e.preventDefault();
+      const items = form.querySelector(`.data`).value;
+
       if (currentMonth.style.display !== `none`) {
         currentMonth.style.display = `none`;
       }
-
-      const locations = form.querySelector(`.data`).value;
-      console.log(location);
-      document.querySelector(`.events__month`).style.display = ``;
-      fetch(`index.php?page=programma&locations=${locations}`, {
+      monthEvents.style.display = ``;
+      fetch(`index.php?page=programma&locations=${items}`, {
         headers: new Headers({
           Accept: `application/json`
         })
       })
       .then(r => r.json())
       .then(events => {
-        showEvents(events, locations);
+        showEvents(events, items);
       });
     });
   });
 };
 
-const showEvents = (events, locations) => {
+const showEvents = (events, items) => {
   const allEvents = document.querySelectorAll(`.event`);
 //  const currentLocation = document.querySelectorAll(`.${locations}`);
   allEvents.forEach(event => {
-    event.style.display = ``;
-    if (!event.classList.contains(`${locations}`)) {
+    if (!event.classList.contains(`${items}`)) {
       event.style.display = `none`;
+    } else {
+      event.style.display = ``;
     }
+
   });
 };
 
@@ -79,12 +124,25 @@ const checkIfSecondImg = () => {
 
 const onFormSubmit = event => {
   event.preventDefault();
-  if (!$form.checkValidity()) {
-    checkEmail(document.getElementById(`email`));
-  } else {
-    document.getElementById(`email`).value;
-  }
+
+  fetch(`${itemAddForm.getAttribute(`action`)}?t=${Date.now()}`, {
+    headers: new Headers({
+      Accept: `application/json`
+    }),
+    method: `post`,
+    body: new FormData(itemAddForm)
+  })
+
+  .then(r => r.json())
+  .then(result => {
+    if (result.result === `ok`) {
+      itemAddForm.querySelector(`[name='email']`).value = ``;
+    } else if (!itemAddForm.checkValidity()) {
+      checkEmail(document.getElementById(`inputEmail`));
+    }
+  });
 };
+
 
 const onEmailChange = e => {
   const $veld = e.currentTarget;
@@ -107,7 +165,7 @@ const checkEmail = $veld => {
 
 const valueMissing = $veld => {
   if ($veld.validity.valueMissing) {
-    return `Dit veld is verplicht`;
+    return `Gelieve een emailadres in te vullen`;
   }
   return ``;
 };
@@ -139,61 +197,105 @@ const getDatetimeSubstings = () => {
   }
 };
 
-const dropdownHandler = e => {
-  const dropdown = e.currentTarget;
-  const zones = document.querySelector(`.zones`);
+const closeDropDown = () => {
+  allEvents.forEach(event => {
+    event.style.display = ``;
+  });
+  zones.style.visibility = `hidden`;
+  zones.style.transform = `translateY(-152.2rem)`;
+  dropdown.style.transform = `translateY(11rem) rotate(0deg)`;
+  monthEvents.style.display = ``;
+  regulars.style.display = ``;
+  monthEvents.style.marginLeft = `0`;
+  monthEvents.style.width = `85vw`;
+  monthEvents.style.marginTop = `2rem`;
+  headerMonth.innerHTML = `${monthArray[4]}`;
+  currentMonth.style.display = ``;
+  headerMonth.style.marginLeft = `0`;
+  headerMonth.style.fontSize = `5rem`;
+  headerMonth.style.fontFamily = `HereJustNow`;
+  headerMonth.style.fontWeight = `normal`;
+  index = 4;
+  getMonth();
+};
+
+const dropdownHandler = () => {
   if (zones.style.visibility === `visible`) {
-    const allEvents = document.querySelectorAll(`.event`);
-    allEvents.forEach(event => {
-      event.style.display = ``;
-    });
-    zones.style.visibility = `hidden`;
-    zones.style.transform = `translateY(-152.2rem)`;
-    dropdown.style.transform = `translateY(11rem) rotate(0deg)`;
-    document.querySelector(`.events__month`).style.display = ``;
-    document.querySelector(`.regulars`).style.display = ``;
-    document.querySelector(`.events__month`).style.marginTop = `1rem`;
-    document.querySelector(`.events__month`).style.marginLeft = `0`;
-    document.querySelector(`.events__month`).style.width = `85vw`;
-    document.querySelector(`.events__month`).style.marginTop = `0`;
-    currentMonth.innerHTML = `${monthArray[0]}`;
-    currentMonth.style.display = ``;
-    currentMonth.style.marginLeft = `0`;
-    currentMonth.style.fontSize = `5rem`;
-    currentMonth.style.fontFamily = `HereJustNow`;
-    currentMonth.style.fontWeight = `normal`;
-
-
+    closeDropDown();
+    headerMonth.style.display = ``;
+    next.style.display = ``;
+    previous.style.display = ``;
   } else {
+    if (tagFilter.querySelector(`.tags`).value !== ` `) {
+      tagFilter.querySelector(`.tags`).value = ` `;
+    //  document.querySelector(`.events`).style.paddingTop = `25rem`;
+    }
+    next.style.display = `none`;
+    previous.style.display = `none`;
     zones.style.visibility = `visible`;
     zones.style.transform = `translateY(0)`;
     dropdown.style.transform = `rotate(-180deg) translateY(-68rem)`;
-    document.querySelector(`.regulars`).style.display = `none`;
-    document.querySelector(`.events__month`).style.display = `none`;
-    document.querySelector(`.events__month`).style.marginLeft = `50rem`;
-    document.querySelector(`.events__month`).style.width = `65vw`;
-    document.querySelector(`.events__month`).style.marginTop = `-20rem`;
-    currentMonth.innerHTML = `Selecteer een zone`;
-    currentMonth.style.marginLeft = `50rem`;
-    currentMonth.style.fontSize = `2rem`;
-    currentMonth.style.fontFamily = `arial`;
-    currentMonth.style.fontWeight = `bold`;
+    regulars.style.display = `none`;
+    monthEvents.style.display = `none`;
+    monthEvents.style.marginLeft = `50rem`;
+    monthEvents.style.width = `65vw`;
+    monthEvents.style.marginTop = `-20rem`;
+    headerMonth.innerHTML = `Selecteer een zone`;
+    headerMonth.style.marginLeft = `50rem`;
+    headerMonth.style.fontSize = `2rem`;
+    headerMonth.style.fontFamily = `arial`;
+    headerMonth.style.fontWeight = `bold`;
+    // if (document.querySelector(`.events__month`).style.marginTop === `-20rem`) {
+    //   document.querySelector(`.events__month`).style.marginTop = `-10rem`;
+    // }
 
   }
 
 };
 
-const getMonth = currentMonth => {
-  currentMonth.innerHTML = monthArray[index];
-  currentMonth.addEventListener(`click`, monthHandler);
+const getMonth = () => {
+  allEvents.forEach(event => {
+    if (event.style.display === `none`) {
+      event.style.display = ``;
+    }
+  });
+  headerMonth.innerHTML = monthArray[index];
+  const startDates = document.querySelectorAll(`.event__start`);
+  startDates.forEach(startDate => {
+    const monthDate = startDate.innerHTML.substring(5, 4);
+    console.log(monthDate, index + 1);
+    if (monthDate !== `${index + 1}`) {
+      startDate.parentNode.parentNode.parentNode.style.display = `none`;
+    }
+  });
+  next.addEventListener(`click`, nextMonthHandler);
+  previous.addEventListener(`click`, previousMonthHandler);
 };
 
-const monthHandler = e => {
+const nextMonthHandler = () => {
+  allEvents.forEach(event => {
+    if (event.style.display === `none`) {
+      event.style.display === ``;
+    }
+  });
   index ++;
-  if (index > 4) {
-    index = 0;
+  if (index > 8) {
+    index = 4;
   }
-  getMonth(e.currentTarget);
+  getMonth();
+};
+
+const previousMonthHandler = () => {
+  allEvents.forEach(event => {
+    if (event.style.display === `none`) {
+      event.style.display === ``;
+    }
+  });
+  index --;
+  if (index < 4) {
+    index = 8;
+  }
+  getMonth();
 };
 
 init();

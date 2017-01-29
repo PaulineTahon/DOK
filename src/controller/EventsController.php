@@ -12,6 +12,7 @@ class EventsController extends Controller {
   }
 
   public function index() {
+    $this->_processAddItemFormIfNeeded();
     $conditions = array();
 
     $conditions[0] = array(
@@ -30,10 +31,53 @@ class EventsController extends Controller {
   }
 
   public function programma() {
-    $conditions = array();
-    if(!empty ($_POST['value'])) {
-      $this->_getEventsByLocation();
+
+    if(!empty ($_GET['locations'])) {
+
+      $location = $_GET["locations"];
+
+      $conditions[0] = array(
+        'field' => 'location',
+        'comparator' => 'like',
+        'value' => $location
+      );
+
     }
+    else if(!empty ($_GET['tag'])) {
+
+      $tag = $_GET['tag'];
+
+      $conditions[0] = array(
+        'field' => 'tag',
+        'comparator' => '=',
+        'value' => $tag
+      );
+
+    } else if (!empty ($_GET['month'])) {
+
+      if(!empty ($_GET['day'])) {
+        $day = $_GET['day'];
+      } else {
+        $day = '00';
+      }
+
+      $month = $_GET['month'];
+
+      $conditions[0] = array(
+        'field' => 'start',
+        'comparator' => '>=',
+        'value' => '2017-'+$month+'-'+$day+' 00:00:00'
+      );
+
+      $conditions[1] = array(
+        'field' => 'end',
+        'comparator' => '<=',
+        'value' => '2017-'+$month+'-'+$day+' 23:59:59'
+      );
+    } else {
+
+      $conditions = array();
+
       // $conditions[0] = array(
       //   'field' => 'end',
       //   'comparator' => '>=',
@@ -44,10 +88,20 @@ class EventsController extends Controller {
       //   'comparator' => '<',
       //   'value' => '2017-06-01 00:00:00'
       // );
-    //$locations = $_GET["locations"];
+    }
 
+    $events = $this->eventDAO->search($conditions);
+    if($this->isAjax) {
+          header('Content-Type: application/json');
+          echo json_encode($events);
+          exit();
+        }
+    $this->set('events', $events);
 
-    // $locations = $_GET["locations"];
+    $this->set('js', '<script src="http://localhost:3000/js/programma.js"></script><script src="http://localhost:3000/js/style.js"></script>');
+    if($this->env == 'production') {
+      $this->set('js', '<script src="js/script.js"></script>');
+    }
 
 
     //example: search on title
@@ -73,63 +127,14 @@ class EventsController extends Controller {
     //   'value' => 'gent'
     // );
 
-    //example: search on tag name
-    // $conditions[0] = array(
-    //   'field' => 'tag',
-    //   'comparator' => '=',
-    //   'value' => 'gastvrijheid'
-    // );
-
     //example: search on location, with certain end date + time
     // $conditions[0] = array(
     //   'field' => 'location',
     //   'comparator' => 'like',
     //   'value' => 'voortuin'
     // );
-    // $conditions[1] = array(
-    //   'field' => 'end',
-    //   'comparator' => '=',
-    //   'value' => '2017-05-01 19:00'
-    // );
 
-    $events = $this->eventDAO->search($conditions);
-    if($this->isAjax) {
-          header('Content-Type: application/json');
-          echo json_encode($events);
-          exit();
-        }
-    $this->set('events', $events);
-
-    $this->set('js', '<script src="http://localhost:3000/js/programma.js"></script><script src="http://localhost:3000/js/style.js"></script>');
-    if($this->env == 'production') {
-      $this->set('js', '<script src="js/script.js"></script>');
-    }
   }
-
-  public function _getEventsByLocation () {
-      if( !empty( $_POST["locations"] ) ){
-
-        $location = $_POST["locations"];
-
-        $conditions[0] = array(
-          'field' => 'location',
-          'comparator' => 'like',
-          'value' => $location
-        );
-
-        if($events = $this->eventDAO->search($conditions)) {
-          if($this->isAjax) {
-            header('Content-Type: application/json');
-            echo json_encode($events);
-            exit();
-          }
-          $this->redirect('index.php');
-        }
-        $this->set('events', $events);
-        var_dump($events);
-      }
-  }
-
 
   public function detail () {
 
@@ -155,26 +160,24 @@ class EventsController extends Controller {
   }
 
   public function _processAddItemFormIfNeeded() {
-    if ($_POST) {
-      $errors = array();
-      if(empty($_POST['email'])) {
-        $errors['score'] = 'Vul je email adres in';
-      }
-
-      $data = array(
-        'email' => $_POST['email'],
-      );
-
-      if(empty($errors)) {
-        $inserted = $this->highscoreDAO->create($data);
-        if(!empty($inserted)) {
-          $_SESSION['info'] = 'emailadres is opgeslagen';
-          $this->redirect('index.php');
+    if(!empty($_POST['action']) && $_POST['action'] == 'add-item') {
+      $data = $_POST['email'];
+      if($result = $this->eventDAO->insert($data)) {
+        if($this->isAjax) {
+          header('Content-Type: application/json');
+          echo json_encode(array('result' => 'ok'));
+          exit();
         }
+        $this->redirect('index.php');
+      } else {
+        $errors = $this->itemDAO->getValidationErrors($data);
+        if($this->isAjax) {
+          header('Content-Type: application/json');
+          echo json_encode(array('result' => 'error', 'errors' => $errors));
+          exit();
+        }
+        $this->set('errors', $errors);
       }
-
-      $_SESSION['error'] = 'error';
-      $this->set('errors', $errors);
     }
   }
 }

@@ -60,10 +60,10 @@
               <div class="selector__style">
                 <img class="selector__img" src="assets/svg/icon-select.svg" alt="dropdown arrow" width="20" height="20"/>
                 <select class="selector__item tags" name="day">
-                  <option class="selector__option" value="tag">SELECTEER TAGS</option>
+                  <option class="selector__option" value=" ">SELECTEER TAGS</option>
                   <option class="selector__option" value="circus">circus</option>
                   <option class="selector__option" value="concert">concert</option>
-                  <option class="selector__option" value="Cosy Cozy">Cosy Cozy</option>
+                  <option class="selector__option" value="cosycozy">Cosy Cozy</option>
                   <option class="selector__option" value="dj">dj</option>
                   <option class="selector__option" value="expo">expo</option>
                   <option class="selector__option" value="film">film</option>
@@ -84,13 +84,48 @@
               <div class="selector__style date-style">
                 <img class="selector__img" src="assets/svg/icon-select.svg" alt="dropdown arrow" width="20" height="20"/>
                 <select class="selector__item date-day" name="date-day">
-                  <option class="selector__option" value="DAG">DAG</option>
+                  <option class="selector__option" value=" ">DAG</option>
+                  <option class="selector__option" value="1">1</option>
+                  <option class="selector__option" value="2">2</option>
+                  <option class="selector__option" value="3">3</option>
+                  <option class="selector__option" value="4">4</option>
+                  <option class="selector__option" value="5">5</option>
+                  <option class="selector__option" value="6">6</option>
+                  <option class="selector__option" value="7">7</option>
+                  <option class="selector__option" value="8">8</option>
+                  <option class="selector__option" value="9">9</option>
+                  <option class="selector__option" value="10">10</option>
+                  <option class="selector__option" value="11">11</option>
+                  <option class="selector__option" value="12">12</option>
+                  <option class="selector__option" value="13">13</option>
+                  <option class="selector__option" value="14">14</option>
+                  <option class="selector__option" value="15">15</option>
+                  <option class="selector__option" value="16">16</option>
+                  <option class="selector__option" value="17">17</option>
+                  <option class="selector__option" value="18">18</option>
+                  <option class="selector__option" value="19">19</option>
+                  <option class="selector__option" value="20">20</option>
+                  <option class="selector__option" value="22">21</option>
+                  <option class="selector__option" value="23">23</option>
+                  <option class="selector__option" value="24">24</option>
+                  <option class="selector__option" value="25">25</option>
+                  <option class="selector__option" value="26">26</option>
+                  <option class="selector__option" value="27">27</option>
+                  <option class="selector__option" value="28">28</option>
+                  <option class="selector__option" value="29">29</option>
+                  <option class="selector__option" value="30">30</option>
+                  <option class="selector__option" value="31">31</option>
                 </select>
               </div>
               <div class="selector__style">
                 <img class="selector__img" src="assets/svg/icon-select.svg" alt="dropdown arrow" width="20" height="20"/>
                 <select class="selector__item date-day" name="date-day">
                   <option class="selector__option" value="MAAND">MAAND</option>
+                  <option class="selector__option" value="mei">mei</option>
+                  <option class="selector__option" value="juni">juni</option>
+                  <option class="selector__option" value="juli">juli</option>
+                  <option class="selector__option" value="augustus">augustus</option>
+                  <option class="selector__option" value="september">september</option>
                 </select>
               </div>
             </form>
@@ -129,13 +164,15 @@
         </article>
       </section>
       <section class="events">
-        <article class="article__events article__upcoming">
-          <header>
+        <article class="article__events">
+          <header class="events__header">
+            <img class="previous" src="assets/svg/dropdown-arrow.svg" alt="previous month" width="40" height="40"/>
             <h1 class="article__start-event__title"></h1>
+            <img class="next" src="assets/svg/dropdown-arrow.svg" alt="next month" width="40" height="40"/>
           </header>
           <div class="events__month">
           <?php foreach($events as $event): ?>
-            <article class="events__month__event event <?php foreach($event['locations'] as $location): echo $location['name'];?> <?php endforeach;?>">
+            <article class="events__month__event event <?php foreach($event['locations'] as $location): echo $location['name'];?> <?php endforeach;?> <?php foreach($event['tags'] as $location): echo $location['tag'];?> <?php endforeach;?>">
               <a href="index.php?page=detail&amp;id=<?php echo $event["id"] ?>" class="event__info">
                 <div class="">
                   <p class="event__start article__desc"><?php echo $event['start'];?></p>

@@ -52,9 +52,9 @@
             <h2 class="article__title">Geen updates missen? <br />Schrijf je in op de nieuwsbrief!</h2>
             <form class="newsletter" action="index.php" method="post" id="itemAddForm">
               <input class="newsletter__input <?php if(!empty($errors['email'])) echo ' has-error';?>" id="inputEmail" type="email" name="email" placeholder="nieuwsbrief@au.be" required/>
-              <?php if(!empty($errors['email'])) echo '<span class="help-block">' . $errors['email'] . '</span>'; ?>
+              <p class="error"></p>
               <input type="hidden" name="action" value="add-item" />
-              <button class="article__button" id="submit" type="submit" name="action" value="SCHRIJF ME IN!">SCHRIJF ME IN!</button>
+              <button class="article__button" type="submit" value="SCHRIJF ME IN!">SCHRIJF ME IN!</button>
             </form>
           </div>
           <img class="article__img article__newsletter__img"src="assets/svg/nieuwsbrief-bg.svg" alt="letterbox" width="320" height="250"/>

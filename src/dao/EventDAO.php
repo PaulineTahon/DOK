@@ -153,10 +153,10 @@ class EventDAO extends DAO {
   }
 
   public function getValidationErrors($data){
-    $errors = [];
+    $errors = array();
 
-    if( !isset($data["email"]) || empty( $data["email"]) ){
-      $errors[] = "Vul een email adres in.";
+    if(empty($data['email'])){
+      $errors['email'] = "Please fill in an email value.";
     }
 
     return $errors;
