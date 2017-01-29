@@ -2,35 +2,38 @@ import es6Promise from 'es6-promise';
 import fetch from 'isomorphic-fetch';
 es6Promise.polyfill();
 
-//const $form = document.forms[0];
 const monthArray = [`mei`, `juni`, `juli`, `augustus`, `september`],
   currentMonth = document.querySelector(`.article__start-event__title`),
   submitForms = document.querySelectorAll(`.form`);
-  //submits = document.querySelectorAll(`submit`);
-  // dataInput = document.querySelectorAll(`data`);
 
-let index = 0;
-   //location;
+let index = 0,
+  $form;
+
 
 const init = () => {
 
+  if (document.querySelector(`.newsletter`)) {
+    $form = document.forms[0];
+    $form.noValidate = true;
+    $form.addEventListener(`submit`, onFormSubmit);
+  }
+
   addSubmitForm();
-  //checkIfSecondImg();
+  checkIfSecondImg();
   getDatetimeSubstings();
 
-  document.querySelector(`.dropdown-arrow`).addEventListener(`click`, dropdownHandler);
+  if (document.querySelector(`.dropdown-arrow`)) {
+    document.querySelector(`.dropdown-arrow`).addEventListener(`click`, dropdownHandler);
+  }
   getMonth(currentMonth);
 
-  //$form.noValidate = true;
-  //$form.addEventListener(`submit`, onFormSubmit);
-  // document.getElementsByName(`email`)[0].addEventListener(`input`, onEmailChange);
-  // document.getElementsByName(`email`)[0].addEventListener(`blur`, onEmailChange);
+  document.getElementsByName(`email`)[0].addEventListener(`input`, onEmailChange);
+  document.getElementsByName(`email`)[0].addEventListener(`blur`, onEmailChange);
 };
 
 const addSubmitForm = () => {
   console.log(submitForms);
   submitForms.forEach(form => {
-  //  const submit = form.querySelector(`.submit`);
     console.log(form);
     form.addEventListener(`submit`, e => {
       e.preventDefault();
@@ -54,8 +57,6 @@ const addSubmitForm = () => {
   });
 };
 
-// `index.php?page=eventsByLocation&location=${location}`
-
 const showEvents = (events, locations) => {
   const allEvents = document.querySelectorAll(`.event`);
 //  const currentLocation = document.querySelectorAll(`.${locations}`);
@@ -76,14 +77,14 @@ const checkIfSecondImg = () => {
   }
 };
 
-// const onFormSubmit = event => {
-//   event.preventDefault();
-//   if (!$form.checkValidity()) {
-//     checkEmail(document.getElementById(`email`));
-//   } else {
-//     document.getElementById(`email`).value;
-//   }
-// };
+const onFormSubmit = event => {
+  event.preventDefault();
+  if (!$form.checkValidity()) {
+    checkEmail(document.getElementById(`email`));
+  } else {
+    document.getElementById(`email`).value;
+  }
+};
 
 const onEmailChange = e => {
   const $veld = e.currentTarget;
@@ -148,7 +149,7 @@ const dropdownHandler = e => {
     });
     zones.style.visibility = `hidden`;
     zones.style.transform = `translateY(-152.2rem)`;
-    dropdown.style.transform = `translateY(12rem) rotate(0deg)`;
+    dropdown.style.transform = `translateY(11rem) rotate(0deg)`;
     document.querySelector(`.events__month`).style.display = ``;
     document.querySelector(`.regulars`).style.display = ``;
     document.querySelector(`.events__month`).style.marginTop = `1rem`;
@@ -166,14 +167,14 @@ const dropdownHandler = e => {
   } else {
     zones.style.visibility = `visible`;
     zones.style.transform = `translateY(0)`;
-    dropdown.style.transform = `rotate(-180deg) translateY(-70rem)`;
+    dropdown.style.transform = `rotate(-180deg) translateY(-68rem)`;
     document.querySelector(`.regulars`).style.display = `none`;
     document.querySelector(`.events__month`).style.display = `none`;
     document.querySelector(`.events__month`).style.marginLeft = `50rem`;
     document.querySelector(`.events__month`).style.width = `65vw`;
     document.querySelector(`.events__month`).style.marginTop = `-20rem`;
     currentMonth.innerHTML = `Selecteer een zone`;
-    currentMonth.style.marginLeft = `30rem`;
+    currentMonth.style.marginLeft = `50rem`;
     currentMonth.style.fontSize = `2rem`;
     currentMonth.style.fontFamily = `arial`;
     currentMonth.style.fontWeight = `bold`;

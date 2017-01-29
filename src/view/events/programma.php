@@ -1,9 +1,9 @@
 
     <header class="page">
-      <nav>
-        <ul class="header-menu">
-          <li class="header-menu__item"><a href="index.php"><img src="assets/svg/dok-logo.svg" alt="home" width="60" height="40"></a></li>
-          <li><a class="header-menu__item active" href="index.php?page=programma">programma</a></li>
+      <nav class="header-menu">
+        <a  class="header-menu__home" href="index.php"><img src="assets/svg/dok-logo.svg" alt="home" width="60" height="40"></a>
+        <ul class="header-menu__nav">
+          <li><a class="header-menu__item" href="index.php?page=programma">programma</a></li>
           <li><a class="header-menu__item" href="#">over dok</a></li>
           <li><a class="header-menu__item" href="#">zones</a></li>
           <li><a class="header-menu__item" href="#">word dokbewoner</a></li>
@@ -26,27 +26,27 @@
             <div class="dropdown">
               <div class="zones">
                 <form class="form" action="index.php?page=programma&mp;locations=DOKTerras" class="zone zone__terras">
-                  <input class="data" type="hidden" type="text" name="locations" value="DOKTerras">
+                  <input class="data" type="hidden" name="locations" value="DOKTerras">
                   <input class="submit" type="image" name="submit" src="assets/svg/dokterras.svg" alt="DOK terras" width="300" height="200"/>
                 </form>
                 <form class="form" action="index.php?page=programma&amp;locations=DOKStrand" class="zone zone__strand">
-                  <input class="data" type="hidden" type="text" name="locations" value="DOKStrand">
+                  <input class="data" type="hidden" name="locations" value="DOKStrand">
                   <input class="submit" type="image" name="submit" src="assets/svg/dokstrand.svg" alt="DOK strand" width="300" height="200"/>
                 </form>
                 <form class="form" action="index.php?page=programma&amp;locations=DOKVoortuin" class="zone zone__voortuin">
-                  <input class="data" type="hidden" type="text" name="locations" value="DOKVoortuin">
+                  <input class="data" type="hidden" name="locations" value="DOKVoortuin">
                   <input class="submit" type="image" name="submit" src="assets/svg/dokvoortuin.svg" alt="DOK voortuin" width="300" height="200"/>
                 </form>
                 <form class="form" action="index.php?page=programma&amp;locations=DOKKantine" class="zone zone__kantine">
-                  <input class="data" type="hidden" type="text" name="locations" value="DOKKantine">
+                  <input class="data" type="hidden" name="locations" value="DOKKantine">
                   <input class="submit" type="image" name="submit" src="assets/svg/dokkantine.svg" alt="DOK kantine" width="300" height="200"/>
                 </form>
                 <form class="form" action="index.php?page=programma&amp;locations=DOKBox" class="zone zone__box">
-                  <input class="data" type="hidden" type="text" name="locations" value="DOKBox">
+                  <input class="data" type="hidden" name="locations" value="DOKBox">
                   <input class="submit" type="image" name="submit" src="assets/svg/dokbox.svg" alt="DOK box" width="300" height="280"/>
                 </form>
                 <form class="form" action="index.php?page=programma&amp;locations=DOKMarkt" class="zone zone__markt">
-                  <input class="data" type="hidden" type="text" name="location" value="DOKMarkt">
+                  <input class="data" type="hidden" name="location" value="DOKMarkt">
                   <input class="submit" type="image" name="submit" src="assets/svg/dokmarkt.svg" alt="DOK markt" width="300" height="200"/>
                 </form>
               </div>
@@ -61,12 +61,18 @@
                 <img class="selector__img" src="assets/svg/icon-select.svg" alt="dropdown arrow" width="20" height="20"/>
                 <select class="selector__item tags" name="day">
                   <option class="selector__option" value="tag">SELECTEER TAGS</option>
-                  <option class="selector__option" value=""></option>
-                  <option class="selector__option" value=""></option>
-                  <option class="selector__option" value=""></option>
-                  <option class="selector__option" value=""></option>
-                  <option class="selector__option" value=""></option>
-                  <option class="selector__option" value=""></option>
+                  <option class="selector__option" value="circus">circus</option>
+                  <option class="selector__option" value="concert">concert</option>
+                  <option class="selector__option" value="Cosy Cozy">Cosy Cozy</option>
+                  <option class="selector__option" value="dj">dj</option>
+                  <option class="selector__option" value="expo">expo</option>
+                  <option class="selector__option" value="film">film</option>
+                  <option class="selector__option" value="gastvrijheid">gastvrijheid</option>
+                  <option class="selector__option" value="moestuin">moestuin</option>
+                  <option class="selector__option" value="rommelmarkt">rommelmarkt</option>
+                  <option class="selector__option" value="voorstelling">voorstelling</option>
+                  <option class="selector__option" value="werkgroep">werkgroep</option>
+                  <option class="selector__option" value="zondag">zondag</option>
                 </select>
               </div>
             </form>

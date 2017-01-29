@@ -138,8 +138,8 @@ class EventDAO extends DAO {
     return $tagsByEventId;
   }
 
-  public function create( $data ){
-    $errors = $this->validateCreateData( $data );
+  public function insert($data){
+    $errors = $this->getValidationErrors($data);
 
     if(empty($errors)) {
       $sql = "INSERT INTO `ma3_dok_newsletter`(`email`) VALUES (:email)";
@@ -149,9 +149,10 @@ class EventDAO extends DAO {
         echo "pushed";
       }
     }
+    return false;
   }
 
-  public function validateCreateData( $data ){
+  public function getValidationErrors($data){
     $errors = [];
 
     if( !isset($data["email"]) || empty( $data["email"]) ){

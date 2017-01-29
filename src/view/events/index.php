@@ -1,8 +1,8 @@
 
     <header class="header">
-      <nav>
-        <ul class="header-menu">
-          <li class="header-menu__item"><a href="index.php"><img src="assets/svg/dok-logo.svg" alt="home" width="60" height="40"></a></li>
+      <nav class="header-menu">
+        <a  class="header-menu__home" href="index.php"><img src="assets/svg/dok-logo.svg" alt="home" width="60" height="40"></a>
+        <ul class="header-menu__nav">
           <li><a class="header-menu__item" href="index.php?page=programma">programma</a></li>
           <li><a class="header-menu__item" href="#">over dok</a></li>
           <li><a class="header-menu__item" href="#">zones</a></li>
@@ -32,7 +32,7 @@
         <img class="cloud cloud__right" src="assets/svg/cloud2.svg" alt="cloud" width="200" height="100"/>
       </section>
     </header>
-    <main>
+    <main class="home__sections">
       <section class="section section__first">
         <article class="article article__intro">
           <header class="hidden">
@@ -42,7 +42,7 @@
             <h2 class="article__intro__title">ontdek <br />ontspan <br />ontplooi</h2>
             <p class="article__desc article__intro__desc">Het DOKseizoen is bijna aangebroken! <br />Dan transformeren we het werf weer tot een ontmoetingsplek, een plaats voor creatie en nieuwe initiatieven. Zorg dat je er bij bent!</p>
           </div>
-          <img class="article__img article__intro__img" src="assets/svg/intro-bg.svg" alt="strandstoel" width="400" height="300"/>
+          <img class="article__img article__intro__img" src="assets/svg/intro-bg.svg" alt="strandstoel" width="380" height="300"/>
         </article>
         <article class="article article__newsletter">
           <header class="hidden">
@@ -50,13 +50,14 @@
           </header>
           <div>
             <h2 class="article__title">Geen updates missen? <br />Schrijf je in op de nieuwsbrief!</h2>
-            <form class="newsletter" action="index.php" method="post" id="form">
-              <input class="newsletter__input" id="email" type="email" name="email" placeholder="nieuwsbrief@au.be" required/>
-              <p class="error"></p>
+            <form class="newsletter" action="index.php" method="post" id="itemAddForm">
+              <input class="newsletter__input <?php if(!empty($errors['email'])) echo ' has-error';?>" id="inputEmail" type="email" name="email" placeholder="nieuwsbrief@au.be" required/>
+              <?php if(!empty($errors['email'])) echo '<span class="help-block">' . $errors['email'] . '</span>'; ?>
+              <input type="hidden" name="action" value="add-item" />
               <button class="article__button" id="submit" type="submit" name="action" value="SCHRIJF ME IN!">SCHRIJF ME IN!</button>
             </form>
           </div>
-          <img class="article__img article__newsletter__img"src="assets/svg/nieuwsbrief-bg.svg" alt="letterbox" width="350" height="250"/>
+          <img class="article__img article__newsletter__img"src="assets/svg/nieuwsbrief-bg.svg" alt="letterbox" width="320" height="250"/>
         </article>
       </section>
       <section class="section section__second">
@@ -69,13 +70,12 @@
             <p class="article__desc">We zetten het DOKseizoen in met activiteiten voor alle leeftijden. Hef met ons het glas op het nieuwe DOKseizoen!</p>
           </div>
         </article>
-        <article class="article article__upcoming">
+        <article class="article__upcoming">
           <header>
-            <h1 class="article__start-event__title mai__first">Upcoming Events</h1>
+            <h1 class="hidden">Upcoming Events</h1>
           </header>
-          <div class="first-events">
           <?php foreach($events as $event): ?>
-              <article class="events__event event <?php foreach($event['locations'] as $location): echo $location['name'];?> <?php endforeach;?>">
+              <article class="start__event <?php foreach($event['locations'] as $location): echo $location['name'];?> <?php endforeach;?>">
                   <a href="index.php?page=detail&amp;id=<?php echo $event["id"] ?>" class="event__info">
                     <div class="">
                       <p class="event__start article__desc"><?php echo $event['start'];?></p>
@@ -95,7 +95,6 @@
                 </article>
             </form>
           <? endforeach;?>
-          </div>
         </article>
       </section>
       <section class="section section__third">
@@ -108,7 +107,7 @@
             <p class="article__desc">Dan hebben we goed nieuws! Ons programma is reeds gevuld met verschillende activiteiten. Vergeet niet af en toe terug een kijkje te komen nemen, nieuwe evenementen schieten als wortels uit de grond!</p>
             <button class="article__button" href="#">bekijk het programma</button><br />
           </div>
-          <img class="article__img article__programme__img" src="assets/svg/programma-bg.svg" alt="programma" width="350" height="250"/>
+          <img class="article__img article__programme__img" src="assets/svg/programma-bg.svg" alt="programma" width="320" height="250"/>
         </article>
         <article class="article article__dokbewoner">
           <div>
@@ -116,7 +115,7 @@
             <p class="article__desc">Sluit je ogen, verbeeld je DOK 2017… Ziet het er ongelofelijk fantastisch uit? <br />Naar goede gewoonte zijn we op zoek naar nieuwe DOKbewoners om een frisse wind te laten waaien op de site! Stuur ons dus jouw idee op en misschoen sta je dit seizoen wel als DOKbewoner te schitteren!</p>
             <button class="article__button" href="#">word dokbewoner!</button><br />
           </div>
-          <img class="article__img article__dokbewoner__img" src="assets/svg/dokbewoner-bg.svg" alt="dokbewoner" width="400" height="300"/>
+          <img class="article__img article__dokbewoner__img" src="assets/svg/dokbewoner-bg.svg" alt="dokbewoner" width="380" height="300"/>
         </article>
       </section>
     </main>

@@ -17,12 +17,7 @@ class EventsController extends Controller {
     $conditions[0] = array(
       'field' => 'start',
       'comparator' => '<=',
-      'value' => '2017-03-01 00:00:00'
-    );
-    $conditions[1] = array(
-      'field' => 'end',
-      'comparator' => '>=',
-      'value' => '2017-03-01 00:00:00'
+      'value' => '2017-05-01 23:59:59'
     );
 
     $events = $this->eventDAO->search($conditions);
@@ -36,21 +31,24 @@ class EventsController extends Controller {
 
   public function programma() {
     $conditions = array();
+    if(!empty ($_POST['value'])) {
+      $this->_getEventsByLocation();
+    }
+      // $conditions[0] = array(
+      //   'field' => 'end',
+      //   'comparator' => '>=',
+      //   'value' => '2017-05-01 00:00:00'
+      // );
+      // $conditions[1] = array(
+      //   'field' => 'end',
+      //   'comparator' => '<',
+      //   'value' => '2017-06-01 00:00:00'
+      // );
+    //$locations = $_GET["locations"];
 
-    $locations = $_GET["locations"];
 
-    // $conditions[0] = array(
-    //   'field' => 'end',
-    //   'comparator' => '>=',
-    //   'value' => '2017-05-01 00:00:00'
-    // );
-    // $conditions[1] = array(
-    //   'field' => 'end',
-    //   'comparator' => '<',
-    //   'value' => '2017-06-01 00:00:00'
-    // );
     // $locations = $_GET["locations"];
-    $this->_getEventsByLocation();
+
 
     //example: search on title
     // $conditions[0] = array(
@@ -109,9 +107,9 @@ class EventsController extends Controller {
   }
 
   public function _getEventsByLocation () {
-      if( !empty( $_GET["locations"] ) ){
+      if( !empty( $_POST["locations"] ) ){
 
-        $location = $_GET["locations"];
+        $location = $_POST["locations"];
 
         $conditions[0] = array(
           'field' => 'location',

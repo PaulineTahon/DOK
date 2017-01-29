@@ -1,7 +1,7 @@
 <header>
-  <nav>
-    <ul class="header-menu">
-      <li class="header-menu__item"><a href="index.php"><img src="assets/svg/dok-logo.svg" alt="home" width="80" height="40"></a></li>
+  <nav class="header-menu">
+    <a  class="header-menu__home" href="index.php"><img src="assets/svg/dok-logo.svg" alt="home" width="60" height="40"></a>
+    <ul class="header-menu__nav">
       <li><a class="header-menu__item" href="index.php?page=programma">programma</a></li>
       <li><a class="header-menu__item" href="#">over dok</a></li>
       <li><a class="header-menu__item" href="#">zones</a></li>
