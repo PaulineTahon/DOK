@@ -15,7 +15,9 @@ const monthArray = [`januari`, `februari`, `maart`, `april`, `mei`, `juni`, `jul
   previous = document.querySelector(`.previous`),
   monthEvents = document.querySelector(`.events__month`),
   regulars = document.querySelector(`.regulars`),
-  errorImg = document.querySelector(`.error__img`);
+  errorImg = document.querySelector(`.error__img`),
+  eventsContainer = document.querySelector(`.events`);
+
 
 let index = 4,
   itemAddForm,
@@ -52,6 +54,11 @@ const checkIfTag = () => {
     errorImg.style.display = `none`;
     if (zones.style.visibility === `visible` || itemsDay !== ` `) {
       closeDropDown();
+    }
+    if (dateFilter.querySelector(`.date-day`).value !== ` ` || dateFilter.querySelector(`.date-month`).value !== ` `) {
+      dateFilter.querySelector(`.date-day`).value = ` `;
+      dateFilter.querySelector(`.date-month`).value = ` `;
+      eventsContainer.style.paddingTop = `25rem`;
     }
 
     if (regulars !== `none`) {
@@ -112,6 +119,13 @@ const addDateFilter = () => {
     e.preventDefault();
     if (zones.style.visibility === `visible` || tagFilter.querySelector(`.tags`).value !== ` `) {
       closeDropDown();
+      tagFilter.querySelector(`.tags`).value = ` `;
+    }
+    if (dateFilter.querySelector(`.date-day`).value === ` ` && dateFilter.querySelector(`.date-month`).value === ` `) {
+      closeDropDown();
+      headerMonth.style.display = ``;
+      next.style.display = ``;
+      previous.style.display = ``;
     }
 
     if (regulars.style.display !== `none`) {
@@ -132,16 +146,18 @@ const addDateFilter = () => {
     })
     .then(r => r.json())
     .then(events => {
-      if (events.length !== 0 || itemsMonth === ` `) {
+      if (events.length !== 0 || itemsMonth === ` ` || itemsDay === ` `) {
+        eventsContainer.style.paddingTop = `25rem`;
+        headerMonth.style.marginRight = `0`;
         showDateEvents(events, dateStart);
       }
-      if (events.length === 0 && itemsMonth !== ` `) {
+      if (events.length === 0 && itemsMonth !== ` ` && itemsDay !== ` `) {
         headerMonth.style.display = ``;
         headerMonth.innerHTML = `Oeps! Die dag zijn er nog geen evenementen gepland. <br /> <br /> Was het maar iedere dag DOKdag...`;
         headerMonth.style.margin = `0 auto`;
+        eventsContainer.style.paddingTop = `10rem`;
         headerMonth.style.fontSize = `2rem`;
         headerMonth.style.fontFamily = `arial`;
-        headerMonth.style.fontWeight = `bold`;
         errorImg.style.display = ``;
         allEvents.forEach(event => {
           event.style.display = `none`;
@@ -153,13 +169,17 @@ const addDateFilter = () => {
 
 const showDateEvents = (events, dateStart) => {
   console.log(itemsMonth);
+  headerMonth.style.color = `#ef8269`;
+  headerMonth.style.margin = `0 auto`;
+  eventsContainer.style.paddingTop = `10rem`;
+  headerMonth.style.fontSize = `2rem`;
+  headerMonth.style.fontFamily = `arial`;
   allEvents.forEach(event => {
     event.style.display = ``;
     const startDate = event.querySelector(`.event__start`).innerHTML;
     const shorterDateStart = `${dateStart.substring(10, 8)}/${dateStart.substring(7, 5)}`;
     if (startDate === shorterDateStart) {
       headerMonth.style.display = `none`;
-      console.log(shorterDateStart.indexOf(`-`));
     } else {
       event.style.display = `none`;
     }
@@ -171,12 +191,27 @@ const showDateEvents = (events, dateStart) => {
     });
     headerMonth.style.display = ``;
     headerMonth.innerHTML = `Gelieve ook een maand te selecteren`;
-    headerMonth.style.margin = `0 auto`;
-    headerMonth.style.fontSize = `2rem`;
-    headerMonth.style.fontFamily = `arial`;
-    headerMonth.style.fontWeight = `bold`;
   } else if (itemsMonth !== ` `) {
     headerMonth.style.display = `none`;
+  }
+
+  if (itemsDay === ` `) {
+    allEvents.forEach(event => {
+      event.style.display = `none`;
+    });
+    headerMonth.style.display = ``;
+    headerMonth.innerHTML = `Gelieve ook een dag te selecteren`;
+  } else if (itemsMonth !== ` `) {
+    headerMonth.style.display = `none`;
+  }
+
+  if (itemsDay === ` ` && itemsMonth === ` `) {
+    closeDropDown();
+    headerMonth.style.display = ``;
+    eventsContainer.style.paddingTop = `25rem`;
+    next.style.display = ``;
+    previous.style.display = ``;
+    headerMonth.style.marginRight = `0`;
   }
 };
 
@@ -292,16 +327,20 @@ const closeDropDown = () => {
   monthEvents.style.width = `85vw`;
   monthEvents.style.marginTop = `2rem`;
   headerMonth.innerHTML = `${monthArray[4]}`;
+  headerMonth.style.color = `black`;
   currentMonth.style.display = ``;
   headerMonth.style.marginLeft = `0`;
   headerMonth.style.fontSize = `5rem`;
+  headerMonth.style.marginRight = `0`;
   headerMonth.style.fontFamily = `HereJustNow`;
-  headerMonth.style.fontWeight = `normal`;
   index = 4;
   getMonth();
 };
 
 const dropdownHandler = () => {
+  eventsContainer.style.paddingTop = `25rem`;
+  errorImg.style.display = `none`;
+  headerMonth.style.display = `none`;
   if (zones.style.visibility === `visible`) {
     closeDropDown();
     headerMonth.style.display = ``;
@@ -310,7 +349,10 @@ const dropdownHandler = () => {
   } else {
     if (tagFilter.querySelector(`.tags`).value !== ` `) {
       tagFilter.querySelector(`.tags`).value = ` `;
-    //  document.querySelector(`.events`).style.paddingTop = `25rem`;
+    }
+    if (dateFilter.querySelector(`.date-day`).value !== ` ` || dateFilter.querySelector(`.date-month`).value !== ` `) {
+      dateFilter.querySelector(`.date-day`).value = ` `;
+      dateFilter.querySelector(`.date-month`).value = ` `;
     }
     next.style.display = `none`;
     previous.style.display = `none`;
@@ -322,15 +364,12 @@ const dropdownHandler = () => {
     monthEvents.style.marginLeft = `50rem`;
     monthEvents.style.width = `65vw`;
     monthEvents.style.marginTop = `-20rem`;
+    headerMonth.style.display = ``;
+    headerMonth.style.color = `#ef8269`;
     headerMonth.innerHTML = `Selecteer een zone`;
     headerMonth.style.marginLeft = `50rem`;
     headerMonth.style.fontSize = `2rem`;
     headerMonth.style.fontFamily = `arial`;
-    headerMonth.style.fontWeight = `bold`;
-    // if (document.querySelector(`.events__month`).style.marginTop === `-20rem`) {
-    //   document.querySelector(`.events__month`).style.marginTop = `-10rem`;
-    // }
-
   }
 
 };

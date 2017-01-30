@@ -675,7 +675,10 @@ body {
 }
 
 .error__img {
-  align-items: center;
+  position: relative;
+  left: 27vw;
+  width: 25vw;
+  padding-top: 2rem;
 }
 
 .DOKTerras {
