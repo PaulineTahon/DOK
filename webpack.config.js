@@ -5,11 +5,10 @@ const webpack = require(`webpack`);
 const publicPath = `/`;
 
 const config = {
-  entry: {
-    style: `./src/css/style.css`,
-    script: `./src/js/script.js`,
-    programma: `./src/js/programma.js`
-  },
+  entry: [
+    `./src/css/style.css`,
+    `./src/js/script.js`,
+  ],
   output: {
     path: path.join(__dirname, `dist`),
     filename: `js/[name].js`,

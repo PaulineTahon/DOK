@@ -8,6 +8,7 @@
           <li><a class="header-menu__item" href="#">zones</a></li>
           <li><a class="header-menu__item" href="#">word dokbewoner</a></li>
           <li><a class="header-menu__item" href="#">contact</a></li>
+          <li class="icon"><a class="header-menu__icon" href="#">&#9776;</a></li>
         </ul>
       </nav>
       <section class="header-text">
@@ -50,7 +51,7 @@
           </header>
           <div>
             <h2 class="article__title">Geen updates missen? <br />Schrijf je in op de nieuwsbrief!</h2>
-            <form class="newsletter" action="index.php" method="post" id="itemAddForm">
+            <form class="newsletter" action="index.php" method="POST" id="itemAddForm">
               <input class="newsletter__input <?php if(!empty($errors['email'])) echo ' has-error';?>" id="inputEmail" type="email" name="email" placeholder="nieuwsbrief@au.be" required/>
               <p class="error"></p>
               <input type="hidden" name="action" value="add-item" />

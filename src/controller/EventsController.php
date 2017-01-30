@@ -24,6 +24,7 @@ class EventsController extends Controller {
     $events = $this->eventDAO->search($conditions);
     if($this->isAjax) {
           header('Content-Type: application/json');
+          var_dump(json_encode($events));
           echo json_encode($events);
           exit();
         }
@@ -98,42 +99,6 @@ class EventsController extends Controller {
         }
     $this->set('events', $events);
 
-    $this->set('js', '<script src="http://localhost:3000/js/programma.js"></script><script src="http://localhost:3000/js/style.js"></script>');
-    if($this->env == 'production') {
-      $this->set('js', '<script src="js/script.js"></script>');
-    }
-
-
-    //example: search on title
-    // $conditions[0] = array(
-    //   'field' => 'title',
-    //   'comparator' => 'like',
-    //   'value' => 'schoen'
-    // );
-
-  //  example: search on location name
-
-    //example: search on organiser id
-    // $conditions[0] = array(
-    //   'field' => 'organiser_id',
-    //   'comparator' => '=',
-    //   'value' => '1'
-    // );
-
-    //example: search on organiser id
-    // $conditions[0] = array(
-    //   'field' => 'organiser',
-    //   'comparator' => 'LIKE',
-    //   'value' => 'gent'
-    // );
-
-    //example: search on location, with certain end date + time
-    // $conditions[0] = array(
-    //   'field' => 'location',
-    //   'comparator' => 'like',
-    //   'value' => 'voortuin'
-    // );
-
   }
 
   public function detail () {
@@ -160,7 +125,7 @@ class EventsController extends Controller {
   }
 
   public function _processAddItemFormIfNeeded() {
-    if(!empty($_POST['action']) && $_POST['action'] == 'add-item') {
+    if(!empty($_POST['email']) && $_POST['action'] == 'add-item') {
       $data = $_POST['email'];
       if($result = $this->eventDAO->insert($data)) {
         if($this->isAjax) {
@@ -170,7 +135,7 @@ class EventsController extends Controller {
         }
         $this->redirect('index.php');
       } else {
-        $errors = $this->itemDAO->getValidationErrors($data);
+        $errors = $this->eventDAO->getValidationErrors($data);
         if($this->isAjax) {
           header('Content-Type: application/json');
           echo json_encode(array('result' => 'error', 'errors' => $errors));

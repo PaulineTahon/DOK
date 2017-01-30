@@ -123,26 +123,27 @@ const checkIfSecondImg = () => {
 };
 
 const onFormSubmit = event => {
+  const inputEmail = document.getElementById(`inputEmail`);
+  const data = new FormData();
+  data.append(`action`, `add-item`);
+  data.append(`email`, inputEmail.value);
+
   event.preventDefault();
 
-  fetch(`${itemAddForm.getAttribute(`action`)}?t=${Date.now()}`, {
-    headers: new Headers({
-      Accept: `application/json`
-    }),
-    method: `post`,
-    body: new FormData(itemAddForm)
-  })
-
-  .then(r => r.json())
-  .then(result => {
-    if (result.result === `ok`) {
-      itemAddForm.querySelector(`[name='email']`).value = ``;
-    } else if (!itemAddForm.checkValidity()) {
-      checkEmail(document.getElementById(`inputEmail`));
-    }
-  });
+  if (!itemAddForm.checkValidity()) {
+    checkEmail(document.getElementById(`inputEmail`));
+  } else {
+    fetch(`index.php`, {
+      headers: new Headers({
+        Accept: `application/json`
+      }),
+      method: `post`,
+      body: data
+    });
+    itemAddForm.querySelector(`[name='email']`).value = ``;
+    document.querySelector(`.article__newsletter__img`).src = `assets/svg/nieuwsbrief-bg2.svg`;
+  }
 };
-
 
 const onEmailChange = e => {
   const $veld = e.currentTarget;

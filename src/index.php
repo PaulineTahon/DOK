@@ -21,11 +21,6 @@ $routes = array(
     'controller' => 'Events',
     'action' => 'detail'
   ),
-
-  'eventsByLocation' => array(
-     'controller' => 'Events',
-     'action' => '_getEventsByLocation'
-   )
 );
 
 if(empty($_GET['page'])) {
