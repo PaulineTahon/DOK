@@ -44,9 +44,9 @@ class EventsController extends Controller {
       );
 
     }
-    else if(!empty ($_GET['tag'])) {
+    else if(!empty ($_GET["tag"])) {
 
-      $tag = $_GET['tag'];
+      $tag = $_GET["tag"];
 
       $conditions[0] = array(
         'field' => 'tag',
@@ -54,41 +54,26 @@ class EventsController extends Controller {
         'value' => $tag
       );
 
-    } else if (!empty ($_GET['month'])) {
+    } else if (!empty ($_GET['dateend'])) {
 
-      if(!empty ($_GET['day'])) {
-        $day = $_GET['day'];
-      } else {
-        $day = '00';
-      }
-
-      $month = $_GET['month'];
+      $dateStart = $_GET['datestart'];
+      $dateEnd = $_GET['dateend'];
 
       $conditions[0] = array(
         'field' => 'start',
         'comparator' => '>=',
-        'value' => '2017-'+$month+'-'+$day+' 00:00:00'
+        'value' => $dateStart
       );
 
       $conditions[1] = array(
         'field' => 'end',
         'comparator' => '<=',
-        'value' => '2017-'+$month+'-'+$day+' 23:59:59'
+        'value' => $dateEnd
       );
     } else {
 
       $conditions = array();
 
-      // $conditions[0] = array(
-      //   'field' => 'end',
-      //   'comparator' => '>=',
-      //   'value' => '2017-05-01 00:00:00'
-      // );
-      // $conditions[1] = array(
-      //   'field' => 'end',
-      //   'comparator' => '<',
-      //   'value' => '2017-06-01 00:00:00'
-      // );
     }
 
     $events = $this->eventDAO->search($conditions);
@@ -98,8 +83,7 @@ class EventsController extends Controller {
           exit();
         }
     $this->set('events', $events);
-
-  }
+}
 
   public function detail () {
 

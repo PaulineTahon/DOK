@@ -7,19 +7,24 @@ const monthArray = [`januari`, `februari`, `maart`, `april`, `mei`, `juni`, `jul
   currentMonth = document.querySelector(`.events__header`),
   submitForms = document.querySelectorAll(`.form`),
   tagFilter = document.querySelector(`.tags__form`),
+  dateFilter = document.querySelector(`.date__form`),
   zones = document.querySelector(`.zones`),
   dropdown = document.querySelector(`.dropdown-arrow`),
   allEvents = document.querySelectorAll(`.event`),
   next = document.querySelector(`.next`),
   previous = document.querySelector(`.previous`),
   monthEvents = document.querySelector(`.events__month`),
-  regulars = document.querySelector(`.regulars`);
+  regulars = document.querySelector(`.regulars`),
+  errorImg = document.querySelector(`.error__img`);
 
 let index = 4,
-  itemAddForm;
-
+  itemAddForm,
+  itemsDay = ` `,
+  itemsMonth = ` `;
 
 const init = () => {
+
+  getDatetimeSubstings();
 
   if (document.querySelector(`.newsletter`)) {
     itemAddForm = document.forms[0];
@@ -29,13 +34,14 @@ const init = () => {
     document.getElementsByName(`email`)[0].addEventListener(`blur`, onEmailChange);
   }
 
-  addSubmitForm();
   checkIfSecondImg();
-  getDatetimeSubstings();
 
   if (document.querySelector(`.dropdown-arrow`)) {
+    errorImg.style.display = `none`;
     document.querySelector(`.dropdown-arrow`).addEventListener(`click`, dropdownHandler);
     checkIfTag();
+    addSubmitForm();
+    addDateFilter();
     getMonth();
   }
 };
@@ -43,7 +49,8 @@ const init = () => {
 const checkIfTag = () => {
   tagFilter.addEventListener(`change`, e => {
     e.preventDefault();
-    if (zones.style.visibility === `visible`) {
+    errorImg.style.display = `none`;
+    if (zones.style.visibility === `visible` || itemsDay !== ` `) {
       closeDropDown();
     }
 
@@ -63,7 +70,7 @@ const checkIfTag = () => {
       previous.style.display = ``;
     }
 
-    fetch(`index.php?page=programma&locations=${items}`, {
+    fetch(`index.php?page=programma&tag=${items}`, {
       headers: new Headers({
         Accept: `application/json`
       })
@@ -76,11 +83,10 @@ const checkIfTag = () => {
 };
 
 const addSubmitForm = () => {
-  console.log(submitForms);
   submitForms.forEach(form => {
-    console.log(form);
     form.addEventListener(`submit`, e => {
       e.preventDefault();
+      errorImg.style.display = `none`;
       const items = form.querySelector(`.data`).value;
 
       if (currentMonth.style.display !== `none`) {
@@ -100,9 +106,82 @@ const addSubmitForm = () => {
   });
 };
 
+const addDateFilter = () => {
+  dateFilter.addEventListener(`change`, e => {
+    errorImg.style.display = `none`;
+    e.preventDefault();
+    if (zones.style.visibility === `visible` || tagFilter.querySelector(`.tags`).value !== ` `) {
+      closeDropDown();
+    }
+
+    if (regulars.style.display !== `none`) {
+      regulars.style.display = `none`;
+      document.querySelector(`.article__start-event__title`).style.display = `none`;
+      next.style.display = `none`;
+      previous.style.display = `none`;
+      monthEvents.style.marginTop = `-20rem`;
+    }
+    itemsDay = dateFilter.querySelector(`.date-day`).value;
+    itemsMonth = dateFilter.querySelector(`.date-month`).value;
+    const dateStart = `2017-${itemsMonth}-${itemsDay} 00:00:00`;
+    const dateEnd = `2017-${itemsMonth}-${itemsDay} 23:59:59`;
+    fetch(`index.php?page=programma&datestart=${dateStart}&dateend=${dateEnd}`, {
+      headers: new Headers({
+        Accept: `application/json`
+      })
+    })
+    .then(r => r.json())
+    .then(events => {
+      if (events.length !== 0 || itemsMonth === ` `) {
+        showDateEvents(events, dateStart);
+      }
+      if (events.length === 0 && itemsMonth !== ` `) {
+        headerMonth.style.display = ``;
+        headerMonth.innerHTML = `Oeps! Die dag zijn er nog geen evenementen gepland. <br /> <br /> Was het maar iedere dag DOKdag...`;
+        headerMonth.style.margin = `0 auto`;
+        headerMonth.style.fontSize = `2rem`;
+        headerMonth.style.fontFamily = `arial`;
+        headerMonth.style.fontWeight = `bold`;
+        errorImg.style.display = ``;
+        allEvents.forEach(event => {
+          event.style.display = `none`;
+        });
+      }
+    });
+  });
+};
+
+const showDateEvents = (events, dateStart) => {
+  console.log(itemsMonth);
+  allEvents.forEach(event => {
+    event.style.display = ``;
+    const startDate = event.querySelector(`.event__start`).innerHTML;
+    const shorterDateStart = `${dateStart.substring(10, 8)}/${dateStart.substring(7, 5)}`;
+    if (startDate === shorterDateStart) {
+      headerMonth.style.display = `none`;
+      console.log(shorterDateStart.indexOf(`-`));
+    } else {
+      event.style.display = `none`;
+    }
+  });
+
+  if (itemsMonth === ` `) {
+    allEvents.forEach(event => {
+      event.style.display = `none`;
+    });
+    headerMonth.style.display = ``;
+    headerMonth.innerHTML = `Gelieve ook een maand te selecteren`;
+    headerMonth.style.margin = `0 auto`;
+    headerMonth.style.fontSize = `2rem`;
+    headerMonth.style.fontFamily = `arial`;
+    headerMonth.style.fontWeight = `bold`;
+  } else if (itemsMonth !== ` `) {
+    headerMonth.style.display = `none`;
+  }
+};
+
+
 const showEvents = (events, items) => {
-  const allEvents = document.querySelectorAll(`.event`);
-//  const currentLocation = document.querySelectorAll(`.${locations}`);
   allEvents.forEach(event => {
     if (!event.classList.contains(`${items}`)) {
       event.style.display = `none`;
@@ -192,9 +271,11 @@ const getDatetimeSubstings = () => {
     endTimes[i].innerHTML = `${endTimes[i].innerHTML.substring(16, 11)}`;
   }
 
-  if (document.querySelector(`.event__title`).innerHTML === `BLANCO, ELIZABETH VAN DAM ‘IN LOVE’`) {
-    document.querySelector(`.event__end`).classList.remove(`hidden`);
-    document.querySelector(`.date__separator`).classList.remove(`hidden`);
+  if (document.querySelector(`.event__title`)) {
+    if (document.querySelector(`.event__title`).innerHTML === `BLANCO, ELIZABETH VAN DAM ‘IN LOVE’`) {
+      document.querySelector(`.event__end`).classList.remove(`hidden`);
+      document.querySelector(`.date__separator`).classList.remove(`hidden`);
+    }
   }
 };
 

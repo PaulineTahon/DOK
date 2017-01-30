@@ -368,6 +368,8 @@ body {
 
   &__img {
     margin-top: 1rem;
+    width: 8rem;
+    height: 8rem;
   }
 
   &__specifics {
@@ -652,6 +654,7 @@ body {
     flex-wrap: wrap;
     margin-top: 1rem;
     padding-bottom: 5rem;
+    z-index: 2000;
 
     &__event {
       width: 35rem;
@@ -669,6 +672,10 @@ body {
     background-color: white;
     transition: .3s ease;
   }
+}
+
+.error__img {
+  align-items: center;
 }
 
 .DOKTerras {
