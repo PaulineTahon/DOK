@@ -102,7 +102,7 @@ body {
     overflow: hidden;
 
     & .icon {
-      visibility: hidden;
+      display: none;
     }
   }
 
@@ -1458,12 +1458,12 @@ body {
     justify-content: space-around;
     border-top: .2rem solid #84eae0;
     border-bottom: .2rem solid #84eae0;
-    padding: .2rem 0;
+    padding: 1rem 0;
     width: 92vw;
   }
 
   .header-menu__item {
-    padding: 0 1.2rem;
+    padding: 0 1.5rem;
   }
 }
 
@@ -1546,6 +1546,9 @@ body {
   }
 
   .dropdown-arrow {
+    appearance: none;
+    background: white;
+    border: none;
     transform: translateY(4.5rem);
     margin-left: 2rem;
   }
@@ -1566,6 +1569,11 @@ body {
 }
 
 @media (width <= 724px) {
+
+  .events {
+    margin-top: 2rem;
+    padding-top: 0;
+  }
 
   .section__second {
     margin-top: 10rem;
@@ -1615,10 +1623,6 @@ body {
     top: 41rem;
     left: .5rem;
   }
-
-  .events {
-    margin-top: 2rem;
-  }
 }
 
 @media (width <= 703px) {
@@ -1628,24 +1632,10 @@ body {
     width: 16rem;
   }
 
-  .header-menu__item {
-    display: none;
-  }
-
-  .header-menu__icon {
-    visibility: visible;
-  }
-
-  .header-menu {
-    flex-flow: row;
-    justify-content: space-between;
-  }
-
   .header-menu__nav {
     flex-flow: column;
     align-items: left;
-    width: 10rem;
-    border: none;
+    width: 20rem;
   }
 }
 
@@ -1707,6 +1697,10 @@ body {
     width: 40vw;
   }
 
+  .selector__zones {
+    display: none;
+  }
+
   .article__title {
     font-size: 1.65rem;
     line-height: 2rem;
@@ -1729,6 +1723,10 @@ body {
 }
 
 @media (width <= 564px) {
+
+  .selector__date {
+    margin-top: -11rem;
+  }
 
   .section__first {
     margin-top: 4rem;
@@ -1767,15 +1765,8 @@ body {
     padding-left: -5rem;
   }
 
-  .header-menu__nav {
-    position: absolute;
-    display: none;
-    transform: translateX(50rem);
-    transition: .5s ease;
-  }
-
   .selector__style {
-    width: 100vw;
+    width: 32rem;
   }
 
   .article {
@@ -1871,12 +1862,24 @@ body {
     }
   }
 
+  .events__month {
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 32rem;
+  }
+
+  .event {
+    margin: 0 auto;
+    margin-bottom: .5rem;
+    width: 12rem;
+  }
+
   .event__specifics {
     display: none;
   }
 
   .article__img {
-    visibility: hidden;
+    display: none;
   }
 
   .page__title__edition {
@@ -1949,22 +1952,6 @@ body {
     margin-top: -8rem;
   }
 
-  .selector__tags {
-    margin-top: -5rem;
-  }
-
-  .selector__date {
-    margin-top: -8rem;
-  }
-
-  .events {
-    margin-top: 9rem;
-  }
-
-  .event {
-    width: 90vw;
-  }
-
   .article__start-event__title {
     font-size: 3.8rem;
   }
@@ -1978,6 +1965,7 @@ body {
   }
 
   .selectors {
+    margin-top: -3rem;
     margin-left: -1.9rem;
   }
 

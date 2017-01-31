@@ -51,7 +51,9 @@
                 </form>
               </div>
             </div>
-            <img class="dropdown-arrow" src="assets/svg/dropdown-arrow.svg" alt="dropdown arrow" width="40" height="40"/>
+            <div class="dropdown-arrow">
+              <img src="assets/svg/dropdown-arrow.svg" alt="dropdown-arrow" width="40" height="40"/>
+            </div>
           </article>
           <article class="selector selector__tags">
             <h1 class="selector__title">tags</h1>

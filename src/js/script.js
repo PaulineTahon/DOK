@@ -214,14 +214,15 @@ const showDateEvents = (events, dateStart) => {
 
 
 const showEvents = (events, items) => {
-  allEvents.forEach(event => {
-    if (!event.classList.contains(`${items}`)) {
-      event.style.display = `none`;
-    } else {
-      event.style.display = ``;
-    }
-
-  });
+  if(items !== ` `) {
+    allEvents.forEach(event => {
+      if (!event.classList.contains(`${items}`)) {
+        event.style.display = `none`;
+      } else {
+        event.style.display = ``;
+      }
+    });
+  }
 };
 
 const checkIfSecondImg = () => {
