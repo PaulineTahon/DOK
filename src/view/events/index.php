@@ -13,7 +13,7 @@
       </nav>
       <section class="header-text">
         <header class="header-text__title">
-          <img src="assets/svg/dok-logo.svg" alt="DOK" width="250" height="125">
+          <img class="header-text__logo" src="assets/svg/dok-logo.svg" alt="DOK" width="250" height="125">
           <h1 class="header-text__title__edition page__title__text">2017</h1>
         </header>
         <div class="header-text__info">
@@ -66,7 +66,7 @@
           <header class="hidden">
             <h1>Start evenement</h1>
           </header>
-          <div>
+          <div class="start-event__title">
             <h2 class="article__start-event__title">1 mei</h2>
             <p class="article__desc">We zetten het DOKseizoen in met activiteiten voor alle leeftijden. Hef met ons het glas op het nieuwe DOKseizoen!</p>
           </div>
