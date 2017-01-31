@@ -58,7 +58,7 @@ const checkIfTag = () => {
     if (dateFilter.querySelector(`.date-day`).value !== ` ` || dateFilter.querySelector(`.date-month`).value !== ` `) {
       dateFilter.querySelector(`.date-day`).value = ` `;
       dateFilter.querySelector(`.date-month`).value = ` `;
-      eventsContainer.style.paddingTop = `25rem`;
+      closeDropDown();
     }
 
     if (regulars !== `none`) {
@@ -66,7 +66,6 @@ const checkIfTag = () => {
       document.querySelector(`.article__start-event__title`).style.display = `none`;
       next.style.display = `none`;
       previous.style.display = `none`;
-      monthEvents.style.marginTop = `-20rem`;
     }
     const items = tagFilter.querySelector(`.tags`).value;
     console.log(items);
@@ -133,7 +132,6 @@ const addDateFilter = () => {
       document.querySelector(`.article__start-event__title`).style.display = `none`;
       next.style.display = `none`;
       previous.style.display = `none`;
-      monthEvents.style.marginTop = `-20rem`;
     }
     itemsDay = dateFilter.querySelector(`.date-day`).value;
     itemsMonth = dateFilter.querySelector(`.date-month`).value;
@@ -147,7 +145,6 @@ const addDateFilter = () => {
     .then(r => r.json())
     .then(events => {
       if (events.length !== 0 || itemsMonth === ` ` || itemsDay === ` `) {
-        eventsContainer.style.paddingTop = `25rem`;
         headerMonth.style.marginRight = `0`;
         showDateEvents(events, dateStart);
       }
@@ -208,7 +205,7 @@ const showDateEvents = (events, dateStart) => {
   if (itemsDay === ` ` && itemsMonth === ` `) {
     closeDropDown();
     headerMonth.style.display = ``;
-    eventsContainer.style.paddingTop = `25rem`;
+    eventsContainer.style.paddingTop = `10rem`;
     next.style.display = ``;
     previous.style.display = ``;
     headerMonth.style.marginRight = `0`;
@@ -255,7 +252,11 @@ const onFormSubmit = event => {
       body: data
     });
     itemAddForm.querySelector(`[name='email']`).value = ``;
-    document.querySelector(`.article__newsletter__img`).src = `assets/svg/nieuwsbrief-bg2.svg`;
+    document.querySelector(`.background-img`).style.background = `url(../assets/svg/nieuwsbrief-bg2.svg) no-repeat`;
+    document.querySelector(`.background-img`).style.backgroundSize = `30rem auto`;
+    document.querySelector(`.background-img`).style.backgroundPosition = `left bottom`;
+
+
   }
 };
 
@@ -325,20 +326,20 @@ const closeDropDown = () => {
   regulars.style.display = ``;
   monthEvents.style.marginLeft = `0`;
   monthEvents.style.width = `85vw`;
-  monthEvents.style.marginTop = `2rem`;
   headerMonth.innerHTML = `${monthArray[4]}`;
   headerMonth.style.color = `black`;
   currentMonth.style.display = ``;
   headerMonth.style.marginLeft = `0`;
   headerMonth.style.fontSize = `5rem`;
   headerMonth.style.marginRight = `0`;
+  monthEvents.style.paddingTop = `0`;
   headerMonth.style.fontFamily = `HereJustNow`;
   index = 4;
   getMonth();
 };
 
 const dropdownHandler = () => {
-  eventsContainer.style.paddingTop = `25rem`;
+  monthEvents.style.paddingTop = `-25rem`;
   errorImg.style.display = `none`;
   headerMonth.style.display = `none`;
   if (zones.style.visibility === `visible`) {
@@ -363,15 +364,14 @@ const dropdownHandler = () => {
     monthEvents.style.display = `none`;
     monthEvents.style.marginLeft = `50rem`;
     monthEvents.style.width = `65vw`;
-    monthEvents.style.marginTop = `-20rem`;
     headerMonth.style.display = ``;
     headerMonth.style.color = `#ef8269`;
     headerMonth.innerHTML = `Selecteer een zone`;
-    headerMonth.style.marginLeft = `50rem`;
+    eventsContainer.style.paddingTop = `10rem`;
+    headerMonth.style.marginLeft = `40rem`;
     headerMonth.style.fontSize = `2rem`;
     headerMonth.style.fontFamily = `arial`;
   }
-
 };
 
 const getMonth = () => {

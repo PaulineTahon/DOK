@@ -34,6 +34,15 @@ const config = {
             loader: `babel-loader`
           },
         ]
+      },
+      {
+        test: /\.(svg|png|jpe?g|gif|webp)$/,
+        loader: `url-loader`,
+        options: {
+          limit: 1000, // inline if < 1 kb
+          context: `./src`,
+          name: `[path][name].[ext]`
+        }
       }
     ]
   }

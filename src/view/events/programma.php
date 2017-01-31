@@ -18,7 +18,7 @@
         <p class="page__desc">Het DOKseizoen is nog niet begonnen, maar wij zijn al volop aan het plannen om er een onvergetelijke editie van te maken! Filter het DOKprogramma of browse naar hartelust om te zien wat je te wachten staat!</p>
       </section>
     </header>
-    <main>
+    <main class="programme__sections">
       <section class="selectors">
           <article class="selector selector__zones">
             <h1 class="selector__title">zones</h1>
@@ -170,13 +170,13 @@
             <h1 class="article__start-event__title"></h1>
             <img class="next" src="assets/svg/dropdown-arrow.svg" alt="next month" width="40" height="40"/>
           </header>
-          <img class="error__img" src="assets/svg/error-message.svg" alt="errormessage" width="200" height="300"/>
+          <img class="error__img" src="assets/svg/error-message.svg" alt="errormessage" width="100" height="200"/>
           <div class="events__month">
           <?php foreach($events as $event): ?>
             <article class="events__month__event event <?php foreach($event['locations'] as $location): echo $location['name'];?> <?php endforeach;?> <?php foreach($event['tags'] as $location): echo $location['tag'];?> <?php endforeach;?>">
               <a href="index.php?page=detail&amp;id=<?php echo $event["id"] ?>" class="event__info">
                 <section class="">
-                  <p class="event__start article__desc"><?php echo $event['start'];?></p>
+                  <p class="event__start"><?php echo $event['start'];?></p>
                   <p class="date__separator hidden">-</p>
                   <p class="event__end article__desc hidden"><?php echo $event['end'];?></p>
                   <img class="event__img" src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="80" height="80"/>
@@ -184,7 +184,7 @@
                 <section class="event__specifics">
                   <header class="event__title"><h2><?php echo $event['title']; ?></h2></header>
                   <div class="event__time">
-                    <p class="event__starttime article__desc"><?php echo $event['start'];?></p>
+                    <p class="event__starttime"><?php echo $event['start'];?></p>
                     <p class="time__separator">-</p>
                     <p class="event__endtime article__desc"><?php echo $event['end'];?></p>
                   </div>

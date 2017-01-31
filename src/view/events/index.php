@@ -6,15 +6,15 @@
           <li><a class="header-menu__item" href="index.php?page=programma">programma</a></li>
           <li><a class="header-menu__item" href="#">over dok</a></li>
           <li><a class="header-menu__item" href="#">zones</a></li>
+          <li><a class="header-menu__item" href="#">praktisch</a></li>
           <li><a class="header-menu__item" href="#">word dokbewoner</a></li>
-          <li><a class="header-menu__item" href="#">contact</a></li>
           <li class="icon"><a class="header-menu__icon" href="#">&#9776;</a></li>
         </ul>
       </nav>
       <section class="header-text">
         <header class="header-text__title">
           <img class="header-text__logo" src="assets/svg/dok-logo.svg" alt="DOK" width="250" height="125">
-          <h1 class="header-text__title__edition page__title__text">2017</h1>
+          <h1 class="header-text__title__edition page__title__edition">2017</h1>
         </header>
         <div class="header-text__info">
           <article>
@@ -28,7 +28,17 @@
             </div>
           </article>
         </div>
-        <img class="header-img" src="assets/svg/header-img.svg" alt="DOK header" width="1550" height="764"/>
+        <picture class="header-img">
+          <source
+            media="(max-width: 1175px)"
+            srcset="assets/svg/header-img2.svg">
+          <source
+            media="(max-width: 690px)"
+            srcset="assets/svg/header-img3.svg">
+          <img
+            src="assets/svg/header-img.svg"
+            alt="header image">
+        </picture>
         <img class="cloud cloud__left" src="assets/svg/cloud1.svg" alt="cloud"  width="200" height="100"/>
         <img class="cloud cloud__right" src="assets/svg/cloud2.svg" alt="cloud" width="200" height="100"/>
       </section>
@@ -43,9 +53,8 @@
             <h2 class="article__intro__title">ontdek <br />ontspan <br />ontplooi</h2>
             <p class="article__desc article__intro__desc">Het DOKseizoen is bijna aangebroken! <br />Dan transformeren we het werf weer tot een ontmoetingsplek, een plaats voor creatie en nieuwe initiatieven. Zorg dat je er bij bent!</p>
           </div>
-          <img class="article__img article__intro__img" src="assets/svg/intro-bg.svg" alt="strandstoel" width="380" height="300"/>
         </article>
-        <article class="article article__newsletter">
+          <article class="article article__newsletter">
           <header class="hidden">
              <h1>NewsLetter</h1>
           </header>
@@ -58,7 +67,7 @@
               <button class="article__button" type="submit" value="SCHRIJF ME IN!">SCHRIJF ME IN!</button>
             </form>
           </div>
-          <img class="article__img article__newsletter__img"src="assets/svg/nieuwsbrief-bg.svg" alt="letterbox" width="320" height="250"/>
+          <span class="background-img"></span>
         </article>
       </section>
       <section class="section section__second">
@@ -67,8 +76,12 @@
             <h1>Start evenement</h1>
           </header>
           <div class="start-event__title">
-            <h2 class="article__start-event__title">1 mei</h2>
-            <p class="article__desc">We zetten het DOKseizoen in met activiteiten voor alle leeftijden. Hef met ons het glas op het nieuwe DOKseizoen!</p>
+            <div class="start-event__intro">
+              <h2 class="article__start-event__title">1 mei</h2>
+              <p class="article__desc">We zetten het DOKseizoen in met activiteiten voor alle leeftijden. Hef met ons het glas op het nieuwe DOKseizoen!</p>
+            </div>
+            <button class="article__button article__button__programme" onclick="location.href='index.php?page=programma'">volledig programma</button><br />
+            <span class="article article__programme"></span>
           </div>
         </article>
         <article class="article__upcoming">
@@ -79,7 +92,7 @@
               <article class="start__event <?php foreach($event['locations'] as $location): echo $location['name'];?> <?php endforeach;?>">
                   <a href="index.php?page=detail&amp;id=<?php echo $event["id"] ?>" class="event__info">
                     <div class="">
-                      <p class="event__start article__desc"><?php echo $event['start'];?></p>
+                      <p class="event__start"><?php echo $event['start'];?></p>
                       <p class="date__separator hidden">-</p>
                       <p class="event__end hidden"><?php echo $event['end']; ?></p>
                       <img class="event__img" src="assets/img/<?php echo $event['img_name'];?>.jpg" alt="<?php echo $event['img_name'];?>" width="80" height="80"/>
@@ -87,9 +100,9 @@
                     <div class="event__specifics">
                       <header class="event__title"><h2><?php echo $event['title']; ?></h2></header>
                       <div class="event__time">
-                        <p class="event__starttime article__desc"><?php echo $event['start'];?></p>
+                        <p class="event__starttime"><?php echo $event['start'];?></p>
                         <p class="time__separator">-</p>
-                        <p class="event__endtime article__desc"><?php echo $event['end'];?></p>
+                        <p class="event__endtime"><?php echo $event['end'];?></p>
                       </div>
                     </div>
                   </a>
@@ -99,24 +112,12 @@
         </article>
       </section>
       <section class="section section__third">
-        <article class="article article__programme">
-          <header class="hidden">
-            <h1>Programma</h1>
-          </header>
-          <div>
-            <h2 class="article__title">Benieuwd wat je dit jaar <br /> mag verwachten?</h2>
-            <p class="article__desc">Dan hebben we goed nieuws! Ons programma is reeds gevuld met verschillende activiteiten. Vergeet niet af en toe terug een kijkje te komen nemen, nieuwe evenementen schieten als wortels uit de grond!</p>
-            <button class="article__button" href="#">bekijk het programma</button><br />
-          </div>
-          <img class="article__img article__programme__img" src="assets/svg/programma-bg.svg" alt="programma" width="320" height="250"/>
-        </article>
         <article class="article article__dokbewoner">
           <div>
             <h2 class="article__title">word dokbewoner</h2>
             <p class="article__desc">Sluit je ogen, verbeeld je DOK 2017… Ziet het er ongelofelijk fantastisch uit? <br />Naar goede gewoonte zijn we op zoek naar nieuwe DOKbewoners om een frisse wind te laten waaien op de site! Stuur ons dus jouw idee op en misschoen sta je dit seizoen wel als DOKbewoner te schitteren!</p>
             <button class="article__button" href="#">word dokbewoner!</button><br />
           </div>
-          <img class="article__img article__dokbewoner__img" src="assets/svg/dokbewoner-bg.svg" alt="dokbewoner" width="380" height="300"/>
         </article>
       </section>
     </main>
